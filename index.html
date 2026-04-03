@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LEVURIX — Functional Ingredients from Purpose-Fermented Yeast</title>
 <meta name="description" content="LEVURIX develops high-purity functional ingredients from purpose-fermented yeast grown on agricultural co-product streams. Patent-pending extraction technology. Calgary, Alberta, Canada.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpolygon points='10,16 14,13 18,16 18,20 14,23 10,20' fill='%23007C7A' opacity='0.9'/%3E%3Cpolygon points='18,16 22,13 26,16 26,20 22,23 18,20' fill='%23007C7A' opacity='0.75'/%3E%3Cpolygon points='14,22 18,19 22,22 22,26 18,29 14,26' fill='%230A6E6E' opacity='0.45'/%3E%3Ccircle cx='18' cy='18' r='2.5' fill='%23C8963E' opacity='0.95'/%3E%3Ccircle cx='18' cy='13' r='1.5' fill='%23C8963E' opacity='0.45'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
@@ -31,7 +32,7 @@ a { color: var(--teal); text-decoration: none; transition: color 0.2s; }
 a:hover { color: var(--teal-deep); }
 img { max-width:100%; display:block; }
 .container { max-width: 1100px; margin: 0 auto; padding: 0 var(--s3); }
- 
+
 /* ─── NAV ─── */
 nav { position: fixed; top:0; left:0; right:0; z-index: 100; background: rgba(248,246,243,0.92); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid rgba(0,124,122,0.08); transition: all 0.3s; }
 nav.scrolled { background: rgba(248,246,243,0.97); box-shadow: 0 1px 12px rgba(21,34,56,0.06); }
@@ -47,48 +48,44 @@ nav.scrolled { background: rgba(248,246,243,0.97); box-shadow: 0 1px 12px rgba(2
 .nav-cta:hover { background: var(--teal-deep); color: #fff !important; }
 .nav-toggle { display:none; background:none; border:none; cursor:pointer; padding: 8px; }
 .nav-toggle span { display:block; width:22px; height:2px; background: var(--navy); margin: 5px 0; transition: 0.3s; border-radius: 2px; }
- 
+
 /* ─── HERO ─── */
 .hero { padding: 160px 0 100px; background: var(--navy); position: relative; overflow: hidden; }
-.hero::before { content:''; position:absolute; top:0; right:0; width:45%; height:100%; background: rgba(0,124,122,0.04); }
-.hero-grid { display:grid; grid-template-columns: 1fr 1fr; gap: var(--s6); align-items: center; position: relative; z-index:2; }
+.hero-content { position: relative; z-index: 2; max-width: 640px; }
+.hero-bg-mark { position: absolute; top: 50%; right: 8%; transform: translateY(-50%); width: 340px; height: auto; opacity: 0.15; z-index: 1; pointer-events: none; }
 .hero-tag { font-family: var(--font-head); font-size: 11px; font-weight: 600; letter-spacing: 0.25em; color: var(--gold); text-transform: uppercase; margin-bottom: var(--s2); display: flex; align-items: center; gap: 10px; }
 .hero-tag::before { content:''; width:24px; height:1.5px; background: var(--gold); }
 .hero h1 { font-family: var(--font-head); font-size: clamp(32px, 4vw, 48px); font-weight: 700; color: #fff; line-height: 1.15; margin-bottom: var(--s3); letter-spacing: -0.01em; }
 .hero h1 em { font-style:normal; color: var(--teal-soft); }
-.hero-sub { font-size: 16px; color: rgba(255,255,255,0.55); line-height: 1.75; margin-bottom: var(--s5); max-width: 500px; }
+.hero-sub { font-size: 16px; color: rgba(255,255,255,0.55); line-height: 1.75; margin-bottom: var(--s5); max-width: 540px; }
 .hero-pills { display:flex; gap: var(--s2); flex-wrap: wrap; }
 .hero-pill { font-family: var(--font-head); font-size: 12px; font-weight: 500; letter-spacing: 0.06em; color: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.12); padding: 8px 18px; border-radius: 20px; }
 .hero-pill.accent { color: var(--gold); border-color: rgba(200,150,62,0.25); }
-.hero-visual { display:flex; align-items:center; justify-content:center; }
-.hero-mark { width: 280px; height: auto; opacity: 0.12; }
- 
+
 /* ─── SECTIONS ─── */
 section { padding: var(--s7) 0; }
 .section-tag { font-family: var(--font-head); font-size: 11px; font-weight: 600; letter-spacing: 0.2em; color: var(--teal); text-transform: uppercase; margin-bottom: var(--s2); display:flex; align-items:center; gap:10px; }
 .section-tag::before { content:''; width:20px; height:1.5px; background: var(--teal); }
 .section-title { font-family: var(--font-head); font-size: clamp(26px, 3.2vw, 36px); font-weight: 600; color: var(--navy); line-height: 1.2; margin-bottom: var(--s3); letter-spacing: -0.01em; }
 .section-sub { font-size: 16px; color: var(--gray-mid); max-width: 620px; line-height: 1.75; margin-bottom: var(--s5); }
- 
+
 /* ─── CIRCULAR ECONOMY ─── */
 .circular { background: #fff; }
-.circular-visual { display:grid; grid-template-columns: 1fr 1fr 1fr; gap: var(--s3); margin-top: var(--s4); }
+.circular-visual { display:grid; grid-template-columns: 1fr 1fr; gap: var(--s3); margin-top: var(--s4); }
 .circular-step { text-align:center; padding: var(--s4) var(--s2); }
 .circular-step-num { font-family: var(--font-head); font-size: 48px; font-weight: 700; color: rgba(0,124,122,0.1); line-height:1; margin-bottom: var(--s1); }
 .circular-step h3 { font-family: var(--font-head); font-size: 16px; font-weight: 600; color: var(--navy); margin-bottom: var(--s1); }
 .circular-step p { font-size: 14px; color: var(--gray-mid); line-height: 1.7; }
- 
+
 /* ─── TECHNOLOGY ─── */
 .tech-grid { display:grid; grid-template-columns: 1fr 1fr; gap: var(--s4); align-items:start; }
 .tech-card { background: #fff; border: 1px solid rgba(0,124,122,0.08); border-radius: 12px; padding: var(--s4); transition: border-color 0.3s; }
 .tech-card:hover { border-color: rgba(0,124,122,0.2); }
-.tech-card-icon { width: 40px; height: 40px; background: rgba(0,124,122,0.06); border-radius: 8px; display:flex; align-items:center; justify-content:center; margin-bottom: var(--s2); }
-.tech-card-icon svg { width:20px; height:20px; }
 .tech-card h3 { font-family: var(--font-head); font-size: 16px; font-weight: 600; color: var(--navy); margin-bottom: var(--s1); }
 .tech-card p { font-size: 14px; color: var(--gray-mid); line-height: 1.7; }
 .tech-ip { margin-top: var(--s5); font-size: 14px; color: var(--gray-mid); line-height: 1.6; }
 .tech-ip strong { color: var(--teal); font-weight: 600; }
- 
+
 /* ─── ROADMAP ─── */
 .roadmap { background: var(--navy); color: #fff; }
 .roadmap .section-tag { color: var(--gold); }
@@ -109,25 +106,25 @@ section { padding: var(--s7) 0; }
 .roadmap-impact-label { font-size: 12px; color: rgba(255,255,255,0.35); margin-top: 4px; line-height: 1.4; }
 .roadmap-gate { margin-top: var(--s5); padding: var(--s3); background: rgba(200,150,62,0.08); border: 1px solid rgba(200,150,62,0.15); border-radius: 10px; }
 .roadmap-gate p { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.6; }
- 
+
 /* ─── MARKET ─── */
 .market-grid { display:grid; grid-template-columns: 1fr 1fr; gap: var(--s4); }
 .market-stat { display:flex; flex-direction:column; padding: var(--s4); background: #fff; border: 1px solid rgba(0,124,122,0.06); border-radius: 12px; }
 .market-stat-num { font-family: var(--font-head); font-size: 36px; font-weight: 700; color: var(--teal); letter-spacing: -0.02em; }
 .market-stat-label { font-size: 14px; color: var(--gray-mid); margin-top: var(--s1); line-height: 1.5; }
- 
+
 /* ─── PARTNER CTA ─── */
 .partner-cta { background: #fff; border-top: 1px solid rgba(0,124,122,0.06); }
 .partner-inner { max-width: 700px; }
 .partner-inner p { font-size: 16px; color: var(--gray-mid); line-height: 1.75; margin-bottom: var(--s2); }
 .partner-btn { display:inline-block; background: var(--teal); color: #fff; padding: 14px 32px; border-radius: 8px; font-family: var(--font-head); font-size: 14px; font-weight: 600; letter-spacing: 0.04em; transition: background 0.3s; margin-top: var(--s2); }
 .partner-btn:hover { background: var(--teal-deep); color: #fff; }
- 
+
 /* ─── TEAM ─── */
 .team { background: #fff; }
 .team-text { max-width: 700px; }
 .team-text p { font-size: 16px; color: var(--gray-mid); line-height: 1.75; margin-bottom: var(--s2); }
- 
+
 /* ─── CONTACT ─── */
 .contact { background: var(--navy); color: #fff; }
 .contact .section-tag { color: var(--gold); }
@@ -152,7 +149,7 @@ section { padding: var(--s7) 0; }
 .contact-info-item svg { width:16px; height:16px; flex-shrink:0; margin-top: 3px; stroke: var(--teal); }
 .contact-info-item span { font-size: 14px; color: rgba(255,255,255,0.55); }
 .hp-field { position: absolute; left: -9999px; }
- 
+
 /* ─── FOOTER ─── */
 footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,0.06); padding: var(--s4) 0; }
 .footer-inner { display:flex; justify-content:space-between; align-items:center; }
@@ -160,26 +157,25 @@ footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,0.06); 
 .footer-links { display:flex; gap: var(--s3); }
 .footer-links a { font-size: 11px; color: rgba(255,255,255,0.25); letter-spacing: 0.04em; }
 .footer-links a:hover { color: var(--teal-soft); }
- 
+
 /* ─── MOBILE MENU ─── */
 .mobile-menu { display:none; position:fixed; top:68px; left:0; right:0; background: var(--white-warm); border-bottom: 1px solid rgba(0,124,122,0.08); padding: var(--s3); flex-direction:column; gap: var(--s2); z-index:99; }
 .mobile-menu.open { display:flex; }
 .mobile-menu a { font-size: 16px; color: var(--navy); padding: var(--s1) 0; font-weight: 400; }
- 
+
 /* ─── ANIMATIONS ─── */
 @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
 .fade-up { opacity:0; animation: fadeUp 0.6s ease forwards; }
 .fade-up-d1 { animation-delay: 0.1s; }
 .fade-up-d2 { animation-delay: 0.2s; }
 .fade-up-d3 { animation-delay: 0.3s; }
- 
+
 /* ─── RESPONSIVE ─── */
 @media (max-width: 768px) {
   .nav-links { display:none; }
   .nav-toggle { display:block; }
   .hero { padding: 120px 0 80px; }
-  .hero-grid { grid-template-columns: 1fr; gap: var(--s4); }
-  .hero-visual { display:none; }
+  .hero-bg-mark { display:none; }
   .hero-pills { gap: var(--s1); }
   .circular-visual { grid-template-columns: 1fr; }
   .tech-grid { grid-template-columns: 1fr; }
@@ -193,7 +189,7 @@ footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,0.06); 
 </style>
 </head>
 <body>
- 
+
 <!-- ══ NAV ══ -->
 <nav id="nav">
   <div class="nav-inner">
@@ -231,40 +227,37 @@ footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,0.06); 
   <a href="#team" onclick="toggleMenu()">Team</a>
   <a href="#contact" onclick="toggleMenu()">Partner With Us</a>
 </div>
- 
+
 <!-- ══ HERO ══ -->
 <section class="hero">
   <div class="container">
-    <div class="hero-grid">
-      <div>
-        <div class="hero-tag fade-up">Circular Bioeconomy &middot; Alberta, Canada</div>
-        <h1 class="fade-up fade-up-d1">Turning agricultural co-products into <em>functional ingredients</em></h1>
-        <p class="hero-sub fade-up fade-up-d2">LEVURIX is developing a patent-pending platform that grows purpose-fermented yeast on undervalued agricultural co-product streams — then extracts multiple high-purity functional ingredients from that yeast, creating new value at every stage.</p>
-        <div class="hero-pills fade-up fade-up-d3">
-          <span class="hero-pill">Clean Label</span>
-          <span class="hero-pill">Allergen-Free</span>
-          <span class="hero-pill">Non-GMO</span>
-          <span class="hero-pill accent">Patent Pending</span>
-        </div>
-      </div>
-      <div class="hero-visual">
-        <svg class="hero-mark" viewBox="0 0 300 260" xmlns="http://www.w3.org/2000/svg">
-          <polygon points="110,130 140,113 170,130 170,164 140,181 110,164" fill="#007C7A" opacity="0.3"/>
-          <polygon points="140,96 170,79 200,96 200,130 170,147 140,130" fill="#007C7A" opacity="0.2"/>
-          <polygon points="80,156 110,139 140,156 140,190 110,207 80,190" fill="#007C7A" opacity="0.25"/>
-          <polygon points="68,122 98,105 128,122 128,156 98,173 68,156" fill="#0A6E6E" opacity="0.12"/>
-          <polygon points="170,168 200,151 230,168 230,202 200,219 170,202" fill="#007C7A" opacity="0.1"/>
-          <polygon points="210,92 240,75 270,92 270,126 240,143 210,126" fill="#C8963E" opacity="0.3"/>
-          <polygon points="222,104 240,94 258,104 258,118 240,128 222,118" fill="none" stroke="#D4864E" stroke-width="1" opacity="0.15"/>
-          <line x1="200" y1="126" x2="210" y2="118" stroke="#C8963E" stroke-width="1" stroke-dasharray="4 3" opacity="0.12"/>
-          <circle cx="278" cy="80" r="6" fill="#C8963E" opacity="0.18"/>
-          <circle cx="290" cy="68" r="4" fill="#C8963E" opacity="0.1"/>
-        </svg>
+    <!-- Decorative background mark -->
+    <svg class="hero-bg-mark" viewBox="0 0 300 260" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="110,130 140,113 170,130 170,164 140,181 110,164" fill="#007C7A" opacity="0.9"/>
+      <polygon points="140,96 170,79 200,96 200,130 170,147 140,130" fill="#007C7A" opacity="0.65"/>
+      <polygon points="80,156 110,139 140,156 140,190 110,207 80,190" fill="#007C7A" opacity="0.75"/>
+      <polygon points="68,122 98,105 128,122 128,156 98,173 68,156" fill="#0A6E6E" opacity="0.5"/>
+      <polygon points="170,168 200,151 230,168 230,202 200,219 170,202" fill="#007C7A" opacity="0.4"/>
+      <polygon points="210,92 240,75 270,92 270,126 240,143 210,126" fill="#C8963E" opacity="0.9"/>
+      <polygon points="222,104 240,94 258,104 258,118 240,128 222,118" fill="none" stroke="#D4864E" stroke-width="1.5" opacity="0.5"/>
+      <line x1="200" y1="126" x2="210" y2="118" stroke="#C8963E" stroke-width="1" stroke-dasharray="4 3" opacity="0.4"/>
+      <circle cx="278" cy="80" r="6" fill="#C8963E" opacity="0.6"/>
+      <circle cx="290" cy="68" r="4" fill="#C8963E" opacity="0.35"/>
+    </svg>
+    <div class="hero-content">
+      <div class="hero-tag fade-up">Circular Bioeconomy &middot; Alberta, Canada</div>
+      <h1 class="fade-up fade-up-d1">Turning agricultural co-products into <em>functional ingredients</em></h1>
+      <p class="hero-sub fade-up fade-up-d2">LEVURIX is developing a patent-pending platform that grows purpose-fermented yeast on undervalued agricultural co-product streams — then extracts multiple high-purity functional ingredients from that yeast, creating new value at every stage.</p>
+      <div class="hero-pills fade-up fade-up-d3">
+        <span class="hero-pill">Clean Label</span>
+        <span class="hero-pill">Allergen-Free</span>
+        <span class="hero-pill">Non-GMO</span>
+        <span class="hero-pill accent">Patent Pending</span>
       </div>
     </div>
   </div>
 </section>
- 
+
 <!-- ══ CIRCULAR ECONOMY ══ -->
 <section id="circular" class="circular">
   <div class="container">
@@ -274,23 +267,18 @@ footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,0.06); 
     <div class="circular-visual">
       <div class="circular-step">
         <div class="circular-step-num">01</div>
-        <h3>Agricultural co-products</h3>
-        <p>Dairy processors, sugar refineries, grain processors, and other food-production facilities generate co-product streams — rich in sugars, nitrogen, and micronutrients — that currently flow to low-value applications or disposal.</p>
+        <h3>Purpose fermentation</h3>
+        <p>Agricultural co-product streams from dairy processors, sugar refineries, and grain facilities — currently undervalued — become substrates for growing purpose-fermented yeast. Low-value inputs are transformed into a controlled, consistent biomass rich in functional compounds.</p>
       </div>
       <div class="circular-step">
         <div class="circular-step-num">02</div>
-        <h3>Purpose fermentation</h3>
-        <p>We use these co-products as substrates to grow purpose-fermented yeast — transforming low-value streams into a controlled, consistent biomass rich in functional compounds.</p>
-      </div>
-      <div class="circular-step">
-        <div class="circular-step-num">03</div>
         <h3>Gentle extraction</h3>
-        <p>Our proprietary platform then recovers multiple functional ingredient streams from that yeast — clean-label, allergen-free ingredients for food, nutraceutical, and personal care supply chains.</p>
+        <p>Our proprietary platform recovers multiple functional ingredient streams from that yeast — clean-label, allergen-free ingredients for food, nutraceutical, and personal care supply chains. Value is created at both stages.</p>
       </div>
     </div>
   </div>
 </section>
- 
+
 <!-- ══ TECHNOLOGY ══ -->
 <section id="technology">
   <div class="container">
@@ -299,22 +287,18 @@ footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,0.06); 
     <p class="section-sub">The LEVURIX platform is designed to recover functional ingredients in their native state — delivering higher purity, preserved molecular structure, and clean-label compatibility from purpose-fermented yeast biomass.</p>
     <div class="tech-grid">
       <div class="tech-card">
-        <div class="tech-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#007C7A" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg></div>
         <h3>Clean label, no harsh solvents</h3>
         <p>Ingredients are recovered without mechanical disruption, thermal degradation, or chemical solvents. The result is native-state compounds ready for food-grade formulations — allergen-free and non-GMO by design.</p>
       </div>
       <div class="tech-card">
-        <div class="tech-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#C8963E" stroke-width="1.5"><path d="M12 3v18M3 12h18"/><circle cx="12" cy="12" r="3"/></svg></div>
         <h3>Multiple ingredient streams</h3>
         <p>A single process run is designed to yield multiple distinct functional ingredients — including protein, polysaccharides, specialty antioxidants, and gut health compounds — from one feedstock input.</p>
       </div>
       <div class="tech-card">
-        <div class="tech-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#007C7A" stroke-width="1.5"><path d="M4 12a8 8 0 018-8M20 12a8 8 0 01-8 8"/><circle cx="12" cy="4" r="1.5" fill="#007C7A"/><circle cx="12" cy="20" r="1.5" fill="#007C7A"/></svg></div>
         <h3>Preserved functionality</h3>
         <p>By maintaining cell integrity during extraction, the platform preserves the native molecular structures that give ingredients their functional properties — gel strength, emulsification, foaming, and bioactivity.</p>
       </div>
       <div class="tech-card">
-        <div class="tech-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#C8963E" stroke-width="1.5"><path d="M2 20h20M6 16V8M10 16V4M14 16V10M18 16V6"/></svg></div>
         <h3>Improved platform economics</h3>
         <p>Multi-stream recovery from a single batch amortises processing cost across several revenue streams — improving unit economics relative to single-product extraction approaches.</p>
       </div>
@@ -324,14 +308,14 @@ footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,0.06); 
     </div>
   </div>
 </section>
- 
+
 <!-- ══ ROADMAP ══ -->
 <section id="roadmap" class="roadmap">
   <div class="container">
     <div class="section-tag">Development Roadmap</div>
     <h2 class="section-title">From lab to commercial scale</h2>
     <p class="section-sub">We follow a stage-gate approach — advancing only when the evidence supports it. Every stage has defined success criteria and a formal GO/NO-GO decision point, protecting against premature scale-up.</p>
- 
+
     <div class="roadmap-phases">
       <div class="roadmap-phase">
         <div class="roadmap-phase-label active">Current</div>
@@ -349,7 +333,7 @@ footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,0.06); 
         <p>Industrial-scale production in Alberta. Multi-stream commercialisation. Export-ready functional ingredients for food and nutraceutical markets.</p>
       </div>
     </div>
- 
+
     <div class="roadmap-impact">
       <div class="roadmap-impact-item">
         <div class="roadmap-impact-num">40+</div>
@@ -364,13 +348,13 @@ footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,0.06); 
         <div class="roadmap-impact-label">Total employment impact including indirect and supply chain</div>
       </div>
     </div>
- 
+
     <div class="roadmap-gate">
       <p>Our development model is designed to create Canadian jobs, retain intellectual property in Alberta, and build a circular bioeconomy that converts fermentation and agricultural co-products into export-ready ingredients — contributing to the economic diversification of Western Canada's food and biomanufacturing sectors.</p>
     </div>
   </div>
 </section>
- 
+
 <!-- ══ MARKET ══ -->
 <section id="market">
   <div class="container">
@@ -397,7 +381,7 @@ footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,0.06); 
     </div>
   </div>
 </section>
- 
+
 <!-- ══ PARTNER CTA ══ -->
 <section id="partners" class="partner-cta">
   <div class="container">
@@ -410,7 +394,7 @@ footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,0.06); 
     </div>
   </div>
 </section>
- 
+
 <!-- ══ TEAM ══ -->
 <section id="team" class="team">
   <div class="container">
@@ -424,7 +408,7 @@ footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,0.06); 
     </div>
   </div>
 </section>
- 
+
 <!-- ══ CONTACT ══ -->
 <section id="contact" class="contact">
   <div class="container">
@@ -462,7 +446,7 @@ footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,0.06); 
     </div>
   </div>
 </section>
- 
+
 <!-- ══ FOOTER ══ -->
 <footer>
   <div class="container">
@@ -476,7 +460,7 @@ footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,0.06); 
     </div>
   </div>
 </footer>
- 
+
 <script>
 window.addEventListener('scroll', () => {
   document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 40);
