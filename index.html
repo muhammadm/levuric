@@ -1,488 +1,293 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEVURIX — Functional Ingredients from Purpose-Fermented Biomass</title>
-<meta name="description" content="LEVURIX develops high-purity functional ingredients from purpose-fermented biomass grown on agricultural co-product streams. Proprietary extraction technology. Calgary, Alberta, Canada.">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpolygon points='10,16 14,13 18,16 18,20 14,23 10,20' fill='%23007C7A' opacity='0.9'/%3E%3Cpolygon points='18,16 22,13 26,16 26,20 22,23 18,20' fill='%23007C7A' opacity='0.75'/%3E%3Cpolygon points='14,22 18,19 22,22 22,26 18,29 14,26' fill='%230A6E6E' opacity='0.45'/%3E%3Ccircle cx='18' cy='18' r='2.5' fill='%23C8963E' opacity='0.95'/%3E%3Ccircle cx='18' cy='13' r='1.5' fill='%23C8963E' opacity='0.45'/%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Levurix</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,600&display=swap">
 <style>
-:root {
-  --teal: #007C7A;
-  --teal-deep: #0A6E6E;
-  --navy: #152238;
-  --gold: #C8963E;
-  --copper: #D4864E;
-  --teal-soft: #B2D8D8;
-  --white-warm: #F8F6F3;
-  --gray-warm: #B8B3AB;
-  --gray-mid: #8A867E;
-  --black-soft: #2C2C2C;
-  --font-head: 'DM Sans', sans-serif;
-  --font-body: 'Inter', sans-serif;
-  --s1: 8px; --s2: 16px; --s3: 24px; --s4: 32px; --s5: 48px; --s6: 64px; --s7: 96px;
-}
-*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior: smooth; }
-body { font-family: var(--font-body); color: var(--black-soft); background: var(--white-warm); line-height: 1.7; font-weight: 400; font-size: 16px; -webkit-font-smoothing: antialiased; }
-a { color: var(--teal); text-decoration: none; transition: color 0.2s; }
-a:hover { color: var(--teal-deep); }
-img { max-width:100%; display:block; }
-.container { max-width: 1100px; margin: 0 auto; padding: 0 var(--s3); }
+  /* Layout: one column, divided by the rule weights of a nutrition panel — 6px, 3px, 1px. */
+  :root {
+    --paper: #F5F2EB;
+    --card: #FBF9F4;
+    --ink: #1C1917;
+    --muted: #635B50;
+    --rule: #CFC7B8;
+    --accent: #8A5A18;
+    --display: 'Archivo', 'Helvetica Neue', Helvetica, system-ui, sans-serif;
+    --body: 'Archivo', 'Helvetica Neue', Helvetica, system-ui, sans-serif;
+    --mark: 'Fraunces', Georgia, 'Times New Roman', serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #17150F;
+      --card: #1F1C15;
+      --ink: #F0EBE0;
+      --muted: #9C9284;
+      --rule: #35312A;
+      --accent: #D9A441;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #17150F;
+    --card: #1F1C15;
+    --ink: #F0EBE0;
+    --muted: #9C9284;
+    --rule: #35312A;
+    --accent: #D9A441;
+    color-scheme: dark;
+  }
 
-/* ─── NAV ─── */
-nav { position: fixed; top:0; left:0; right:0; z-index: 100; background: rgba(248,246,243,0.92); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid rgba(0,124,122,0.08); transition: all 0.3s; }
-nav.scrolled { background: rgba(248,246,243,0.97); box-shadow: 0 1px 12px rgba(21,34,56,0.06); }
-.nav-inner { max-width:1100px; margin:0 auto; padding: 0 var(--s3); display:flex; align-items:center; justify-content:space-between; height: 68px; }
-.nav-logo { display:flex; align-items:center; gap: 10px; }
-.nav-logo svg { width: 42px; height: auto; }
-.nav-wordmark { font-family: var(--font-head); font-size: 20px; font-weight: 600; letter-spacing: 0.14em; color: var(--navy); }
-.nav-wordmark span { color: var(--teal); }
-.nav-links { display:flex; gap: var(--s4); align-items:center; list-style:none; }
-.nav-links a { font-family: var(--font-body); font-size: 13px; font-weight: 400; letter-spacing: 0.06em; color: var(--gray-mid); transition: color 0.2s; }
-.nav-links a:hover { color: var(--teal); }
-.nav-cta { background: var(--teal); color: #fff !important; padding: 8px 20px; border-radius: 6px; font-weight: 500; font-size: 13px; }
-.nav-cta:hover { background: var(--teal-deep); color: #fff !important; }
-.nav-toggle { display:none; background:none; border:none; cursor:pointer; padding: 8px; }
-.nav-toggle span { display:block; width:22px; height:2px; background: var(--navy); margin: 5px 0; transition: 0.3s; border-radius: 2px; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .shell {
+    max-width: 780px;
+    margin: 0 auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-block: 56px 72px;
+  }
+  @media (min-width: 640px) {
+    .shell { padding-left: 40px; padding-right: 40px; padding-block: 88px 96px; }
+  }
 
-/* ─── HERO ─── */
-.hero { padding: 160px 0 100px; min-height: 70vh; display: flex; align-items: center; background: var(--navy); position: relative; overflow: hidden; }
-.hero-content { position: relative; z-index: 2; }
-.hero-bg-mark { position: absolute; top: 50%; right: 6%; transform: translateY(-50%); width: 340px; height: auto; opacity: 0.15; z-index: 1; pointer-events: none; }
+  h1, h2, h3 { margin: 0; text-wrap: balance; }
+  p { margin: 0; }
+  a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a:hover { text-decoration-thickness: 2px; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
-.hero-tag { font-family: var(--font-head); font-size: 11px; font-weight: 600; letter-spacing: 0.25em; color: var(--gold); text-transform: uppercase; margin-bottom: var(--s2); display: flex; align-items: center; gap: 10px; }
-.hero-tag::before { content:''; width:24px; height:1.5px; background: var(--gold); }
-.hero h1 { font-family: var(--font-head); font-size: clamp(32px, 4vw, 48px); font-weight: 700; color: #fff; line-height: 1.15; margin-bottom: var(--s3); letter-spacing: -0.01em; }
-.hero h1 em { font-style:normal; color: var(--teal-soft); }
-.hero-sub { font-size: 16px; color: rgba(255,255,255,0.55); line-height: 1.75; margin-bottom: var(--s5); max-width: 620px; }
-.hero-pills { display:flex; gap: var(--s2); flex-wrap: wrap; }
-.hero-pill { font-family: var(--font-head); font-size: 12px; font-weight: 500; letter-spacing: 0.06em; color: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.12); padding: 8px 18px; border-radius: 20px; }
-.hero-pill.accent { color: var(--gold); border-color: rgba(200,150,62,0.25); }
+  /* Masthead */
+  .masthead { display: flex; align-items: center; gap: 13px; }
+  .monogram {
+    width: 44px; height: 44px; flex-shrink: 0;
+    background: var(--ink);
+    border-radius: 9px 9px 50% 50% / 9px 9px 16px 16px;
+    display: flex; align-items: center; justify-content: center;
+    padding-bottom: 3px; box-sizing: border-box;
+  }
+  .monogram span {
+    font-family: var(--mark); font-size: 24px; font-weight: 400;
+    color: var(--paper); line-height: 1;
+  }
+  .wordmark {
+    font-family: var(--mark); font-size: 31px; font-weight: 600;
+    letter-spacing: 0.01em; line-height: 1;
+  }
 
-/* ─── SECTIONS ─── */
-section { padding: var(--s7) 0; }
-.section-tag { font-family: var(--font-head); font-size: 11px; font-weight: 600; letter-spacing: 0.2em; color: var(--teal); text-transform: uppercase; margin-bottom: var(--s2); display:flex; align-items:center; gap:10px; }
-.section-tag::before { content:''; width:20px; height:1.5px; background: var(--teal); }
-.section-title { font-family: var(--font-head); font-size: clamp(26px, 3.2vw, 36px); font-weight: 600; color: var(--navy); line-height: 1.2; margin-bottom: var(--s3); letter-spacing: -0.01em; }
-.section-sub { font-size: 16px; color: var(--gray-mid); max-width: 620px; line-height: 1.75; margin-bottom: var(--s5); }
+  .eyebrow {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--muted);
+  }
 
-/* ─── CIRCULAR ECONOMY ─── */
-.circular { background: #fff; }
-.circular-visual { display:grid; grid-template-columns: 1fr 1fr; gap: var(--s3); margin-top: var(--s4); }
-.circular-step { text-align:center; padding: var(--s4) var(--s2); }
-.circular-step-num { font-family: var(--font-head); font-size: 48px; font-weight: 700; color: rgba(0,124,122,0.1); line-height:1; margin-bottom: var(--s1); }
-.circular-step h3 { font-family: var(--font-head); font-size: 16px; font-weight: 600; color: var(--navy); margin-bottom: var(--s1); }
-.circular-step p { font-size: 14px; color: var(--gray-mid); line-height: 1.7; }
+  /* Panel rules */
+  .rule-heavy { height: 6px; background: var(--ink); border: 0; margin: 0; }
+  .rule-mid { height: 3px; background: var(--ink); border: 0; margin: 0; }
+  .rule-fine { height: 1px; background: var(--rule); border: 0; margin: 0; }
 
-/* ─── TECHNOLOGY ─── */
-.tech-grid { display:grid; grid-template-columns: 1fr 1fr; gap: var(--s4); align-items:start; }
-.tech-card { background: #fff; border: 1px solid rgba(0,124,122,0.08); border-radius: 12px; padding: var(--s4); transition: border-color 0.3s; }
-.tech-card:hover { border-color: rgba(0,124,122,0.2); }
-.tech-card h3 { font-family: var(--font-head); font-size: 16px; font-weight: 600; color: var(--navy); margin-bottom: var(--s1); }
-.tech-card p { font-size: 14px; color: var(--gray-mid); line-height: 1.7; }
-.tech-ip { margin-top: var(--s5); font-size: 14px; color: var(--gray-mid); line-height: 1.6; }
-.tech-ip strong { color: var(--teal); font-weight: 600; }
+  .stack { display: flex; flex-direction: column; }
+  .gap-s { gap: 10px; }
+  .gap-m { gap: 18px; }
+  .gap-l { gap: 30px; }
+  .block { padding-block: 34px; }
 
-/* ─── ROADMAP ─── */
-.roadmap { background: var(--navy); color: #fff; }
-.roadmap .section-tag { color: var(--gold); }
-.roadmap .section-tag::before { background: var(--gold); }
-.roadmap .section-title { color: #fff; }
-.roadmap .section-sub { color: rgba(255,255,255,0.45); }
-.roadmap-phases { display:grid; grid-template-columns: 1fr 1fr 1fr; gap: var(--s3); margin-top: var(--s4); }
-.roadmap-phase { padding: var(--s3); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; background: rgba(255,255,255,0.03); }
-.roadmap-phase-label { font-family: var(--font-head); font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: var(--s1); }
-.roadmap-phase-label.done { color: var(--teal-soft); }
-.roadmap-phase-label.active { color: var(--gold); }
-.roadmap-phase-label.planned { color: rgba(255,255,255,0.25); }
-.roadmap-phase h3 { font-family: var(--font-head); font-size: 16px; font-weight: 600; color: #fff; margin-bottom: var(--s1); }
-.roadmap-phase p { font-size: 14px; color: rgba(255,255,255,0.4); line-height: 1.65; }
-.roadmap-impact { margin-top: var(--s5); display:grid; grid-template-columns: 1fr 1fr 1fr; gap: var(--s3); }
-.roadmap-impact-item { text-align:center; padding: var(--s3) var(--s2); }
-.roadmap-impact-num { font-family: var(--font-head); font-size: 32px; font-weight: 700; color: var(--gold); }
-.roadmap-impact-label { font-size: 12px; color: rgba(255,255,255,0.35); margin-top: 4px; line-height: 1.4; }
-.roadmap-gate { margin-top: var(--s5); padding: var(--s3); background: rgba(200,150,62,0.08); border: 1px solid rgba(200,150,62,0.15); border-radius: 10px; }
-.roadmap-gate p { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.6; }
+  .thesis {
+    font-family: var(--display);
+    font-size: clamp(30px, 7.2vw, 52px);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.04;
+    max-width: 17em;
+  }
+  .lede { font-size: 18px; line-height: 1.58; max-width: 36em; color: var(--ink); }
+  .prose { font-size: 16px; line-height: 1.65; max-width: 36em; color: var(--muted); }
 
-/* ─── MARKET ─── */
-.market-grid { display:grid; grid-template-columns: 1fr 1fr; gap: var(--s4); }
-.market-stat { display:flex; flex-direction:column; padding: var(--s4); background: #fff; border: 1px solid rgba(0,124,122,0.06); border-radius: 12px; }
-.market-stat-num { font-family: var(--font-head); font-size: 36px; font-weight: 700; color: var(--teal); letter-spacing: -0.02em; }
-.market-stat-label { font-size: 14px; color: var(--gray-mid); margin-top: var(--s1); line-height: 1.5; }
+  /* Brand entry */
+  .brand {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    padding: 26px 24px 24px;
+    display: flex; flex-direction: column; gap: 20px;
+  }
+  .brand-name {
+    font-family: var(--display); font-size: 27px; font-weight: 800;
+    letter-spacing: -0.022em; line-height: 1.05;
+  }
+  .brand-name em {
+    font-family: var(--mark); font-style: italic; font-weight: 600;
+    letter-spacing: 0; font-size: 25px;
+  }
+  .figures {
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-top: 1px solid var(--rule);
+  }
+  @media (min-width: 520px) { .figures { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  .figure {
+    min-width: 0; padding: 13px 14px 13px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .figure-value {
+    font-family: var(--display); font-size: 22px; font-weight: 700;
+    letter-spacing: -0.02em; line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+  }
+  .figure-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.13em;
+    text-transform: uppercase; color: var(--muted); margin-top: 4px;
+  }
 
-/* ─── PARTNER CTA ─── */
-.partner-cta { background: #fff; border-top: 1px solid rgba(0,124,122,0.06); }
-.partner-inner { max-width: 700px; }
-.partner-inner p { font-size: 16px; color: var(--gray-mid); line-height: 1.75; margin-bottom: var(--s2); }
-.partner-btn { display:inline-block; background: var(--teal); color: #fff; padding: 14px 32px; border-radius: 8px; font-family: var(--font-head); font-size: 14px; font-weight: 600; letter-spacing: 0.04em; transition: background 0.3s; margin-top: var(--s2); }
-.partner-btn:hover { background: var(--teal-deep); color: #fff; }
+  /* Practice entries, set like a declaration */
+  .entry { display: flex; flex-direction: column; gap: 6px; padding-block: 20px; border-top: 1px solid var(--rule); }
+  .entry:first-of-type { border-top: 0; padding-top: 4px; }
+  .entry-title { font-size: 16px; font-weight: 700; letter-spacing: -0.005em; }
+  .entry-body { font-size: 15px; line-height: 1.6; color: var(--muted); max-width: 40em; }
 
-/* ─── TEAM ─── */
-.team { background: #fff; }
-.team-text { max-width: 700px; }
-.team-text p { font-size: 16px; color: var(--gray-mid); line-height: 1.75; margin-bottom: var(--s2); }
+  /* Contact */
+  .contact { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+  .address {
+    font-family: var(--display); font-size: 19px; font-weight: 600;
+    letter-spacing: -0.01em; user-select: all;
+  }
+  .copy {
+    font-family: var(--body); font-size: 12px; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--paper); background: var(--ink);
+    border: 0; border-radius: 3px; padding: 9px 14px;
+    cursor: pointer; min-height: 44px;
+  }
+  .copy:hover { background: var(--accent); }
+  .colophon {
+    font-size: 12.5px; line-height: 1.6; color: var(--muted);
+    display: flex; flex-wrap: wrap; gap: 4px 10px;
+  }
+  .colophon span:not(:last-child)::after { content: ' ·'; color: var(--rule); }
 
-/* ─── CONTACT ─── */
-.contact { background: var(--navy); color: #fff; }
-.contact .section-tag { color: var(--gold); }
-.contact .section-tag::before { background: var(--gold); }
-.contact .section-title { color: #fff; }
-.contact .section-sub { color: rgba(255,255,255,0.45); }
-.contact-grid { display:grid; grid-template-columns: 1fr 1fr; gap: var(--s6); }
-.contact-form { display:flex; flex-direction:column; gap: var(--s2); }
-.contact-form input, .contact-form textarea, .contact-form select {
-  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px;
-  padding: 14px 16px; color: #fff; font-family: var(--font-body); font-size: 14px; outline: none; transition: border-color 0.3s;
-}
-.contact-form input::placeholder, .contact-form textarea::placeholder { color: rgba(255,255,255,0.25); }
-.contact-form input:focus, .contact-form textarea:focus, .contact-form select:focus { border-color: var(--teal); }
-.contact-form select { appearance: none; cursor: pointer; }
-.contact-form select option { background: var(--navy); color: #fff; }
-.contact-form textarea { min-height: 120px; resize: vertical; }
-.contact-form button { background: var(--gold); color: #fff; border: none; border-radius: 8px; padding: 14px 32px; font-family: var(--font-head); font-size: 14px; font-weight: 600; letter-spacing: 0.06em; cursor: pointer; transition: background 0.3s; align-self: flex-start; }
-.contact-form button:hover { background: var(--copper); }
-.contact-info p { font-size: 14px; color: rgba(255,255,255,0.4); line-height: 1.7; margin-bottom: var(--s3); }
-.contact-info-item { display:flex; align-items:flex-start; gap: 12px; margin-bottom: var(--s2); }
-.contact-info-item svg { width:16px; height:16px; flex-shrink:0; margin-top: 3px; stroke: var(--teal); }
-.contact-info-item span { font-size: 14px; color: rgba(255,255,255,0.55); }
-.hp-field { position: absolute; left: -9999px; }
-
-/* ─── FOOTER ─── */
-footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,0.06); padding: var(--s4) 0; }
-.footer-inner { display:flex; justify-content:space-between; align-items:center; }
-.footer-legal { font-size: 11px; color: rgba(255,255,255,0.2); letter-spacing: 0.04em; }
-.footer-links { display:flex; gap: var(--s3); }
-.footer-links a { font-size: 11px; color: rgba(255,255,255,0.25); letter-spacing: 0.04em; }
-.footer-links a:hover { color: var(--teal-soft); }
-
-/* ─── MOBILE MENU ─── */
-.mobile-menu { display:none; position:fixed; top:68px; left:0; right:0; background: var(--white-warm); border-bottom: 1px solid rgba(0,124,122,0.08); padding: var(--s3); flex-direction:column; gap: var(--s2); z-index:99; }
-.mobile-menu.open { display:flex; }
-.mobile-menu a { font-size: 16px; color: var(--navy); padding: var(--s1) 0; font-weight: 400; }
-
-/* ─── ANIMATIONS ─── */
-@keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
-.fade-up { opacity:0; animation: fadeUp 0.6s ease forwards; }
-.fade-up-d1 { animation-delay: 0.1s; }
-.fade-up-d2 { animation-delay: 0.2s; }
-.fade-up-d3 { animation-delay: 0.3s; }
-
-/* ─── RESPONSIVE ─── */
-@media (max-width: 768px) {
-  .nav-links { display:none; }
-  .nav-toggle { display:block; }
-  .hero { padding: 120px 0 80px; min-height: auto; }
-  .hero-bg-mark { display:none; }
-  .hero-pills { gap: var(--s1); }
-  .circular-visual { grid-template-columns: 1fr; }
-  .tech-grid { grid-template-columns: 1fr; }
-  .roadmap-phases { grid-template-columns: 1fr; }
-  .roadmap-impact { grid-template-columns: 1fr; }
-  .market-grid { grid-template-columns: 1fr; }
-  .team-text { max-width: 100%; }
-  .contact-grid { grid-template-columns: 1fr; }
-  .footer-inner { flex-direction:column; gap: var(--s2); text-align:center; }
-}
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
 </style>
-</head>
-<body>
 
-<!-- ══ NAV ══ -->
-<nav id="nav">
-  <div class="nav-inner">
-    <a href="#" class="nav-logo">
-      <svg viewBox="0 0 100 72" xmlns="http://www.w3.org/2000/svg">
-        <polygon points="28,30 38,24 48,30 48,42 38,48 28,42" fill="#007C7A" opacity="0.92"/>
-        <polygon points="38,18 48,12 58,18 58,30 48,36 38,30" fill="#007C7A" opacity="0.6"/>
-        <polygon points="18,36 28,30 38,36 38,48 28,54 18,48" fill="#007C7A" opacity="0.72"/>
-        <polygon points="14,24 24,18 34,24 34,36 24,42 14,36" fill="#0A6E6E" opacity="0.4"/>
-        <polygon points="48,48 58,42 68,48 68,60 58,66 48,60" fill="#007C7A" opacity="0.32"/>
-        <polygon points="62,16 72,10 82,16 82,28 72,34 62,28" fill="#C8963E" opacity="0.95"/>
-        <polygon points="68,21 72,18 76,21 76,25 72,28 68,25" fill="none" stroke="#D4864E" stroke-width="0.6" opacity="0.35"/>
-        <line x1="58" y1="28" x2="62" y2="24" stroke="#C8963E" stroke-width="0.7" stroke-dasharray="2 1.5" opacity="0.35"/>
-        <circle cx="86" cy="10" r="2.5" fill="#C8963E" opacity="0.4"/>
-        <circle cx="90" cy="6" r="1.5" fill="#C8963E" opacity="0.2"/>
-      </svg>
-      <span class="nav-wordmark">LEVURI<span>X</span></span>
-    </a>
-    <ul class="nav-links">
-      <li><a href="#circular">The Opportunity</a></li>
-      <li><a href="#technology">Technology</a></li>
-      <li><a href="#roadmap">Roadmap</a></li>
-      <li><a href="#team">Team</a></li>
-      <li><a href="#contact" class="nav-cta">Partner With Us</a></li>
-    </ul>
-    <button class="nav-toggle" onclick="toggleMenu()" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</nav>
-<div class="mobile-menu" id="mobileMenu">
-  <a href="#circular" onclick="toggleMenu()">The Opportunity</a>
-  <a href="#technology" onclick="toggleMenu()">Technology</a>
-  <a href="#roadmap" onclick="toggleMenu()">Roadmap</a>
-  <a href="#team" onclick="toggleMenu()">Team</a>
-  <a href="#contact" onclick="toggleMenu()">Partner With Us</a>
+<div class="shell stack gap-l">
+
+  <header class="stack gap-m">
+    <div class="masthead">
+      <div class="monogram" aria-hidden="true"><span>L</span></div>
+      <div class="wordmark">Levurix</div>
+    </div>
+    <h1 class="thesis">Food brands for households that have to read every label.</h1>
+  </header>
+
+  <hr class="rule-heavy">
+
+  <section class="block stack gap-s">
+    <div class="eyebrow">What we do</div>
+    <p class="lede">We develop and operate consumer nutrition brands in the allergen-free category — products formulated from the start without the major allergens, rather than adapted to avoid them.</p>
+  </section>
+
+  <hr class="rule-mid">
+
+  <section class="block stack gap-m">
+    <div class="eyebrow">Brands</div>
+    <div class="brand">
+      <div class="stack gap-s">
+        <h2 class="brand-name"> <em>Complete Protein</em></h2>
+        <p class="prose">A complete protein shake built on a single protein source, with the fibre most of the category leaves out. Launching in the United States in 2027.</p>
+      </div>
+      <div class="figures">
+        <div class="figure">
+          <div class="figure-value">28 g</div>
+          <div class="figure-label">Protein</div>
+        </div>
+        <div class="figure">
+          <div class="figure-value">10 g</div>
+          <div class="figure-label">Fibre</div>
+        </div>
+        <div class="figure">
+          <div class="figure-value">Six</div>
+          <div class="figure-label">Ingredients</div>
+        </div>
+        <div class="figure">
+          <div class="figure-value">Zero</div>
+          <div class="figure-label">Of the major allergens</div>
+        </div>
+      </div>
+      <div><a href="https://bushel.com"></a></div>
+    </div>
+  </section>
+
+  <hr class="rule-mid">
+
+  <section class="block stack gap-s">
+    <div class="eyebrow">Why we build here</div>
+    <p class="prose">The nutrition aisle serves allergen-free households by substitution rather than by design. Products built around what has been removed taste like compromise, and the people who need them most are the ones already reading every line of every panel. We formulate for the constraint first and let the nutrition and the eating experience follow from it.</p>
+  </section>
+
+  <hr class="rule-mid">
+
+  <section class="block stack gap-m">
+    <div class="eyebrow">How we work</div>
+    <div>
+      <div class="entry">
+        <div class="entry-title">Ingredient-led formulation</div>
+        <div class="entry-body">We select for amino acid completeness, fibre quality and sensory performance, and we print the ingredient count on the front of the pack.</div>
+      </div>
+      <div class="entry">
+        <div class="entry-title">Dedicated allergen-free manufacturing</div>
+        <div class="entry-body">We manufacture only in facilities that handle none of the fourteen major allergens.</div>
+      </div>
+      <div class="entry">
+        <div class="entry-title">Short lists</div>
+        <div class="entry-body">If an ingredient does not do a specific job, it is not in the formula.</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule-heavy">
+
+  <footer class="block stack gap-m" style="padding-bottom: 0">
+    <hr class="rule-fine">
+    <div class="colophon">
+      <span>Levurix</span>
+      <span>Calgary, Alberta, Canada</span>
+      <span>Incorporated 2026</span>
+      <span>&copy; 2026</span>
+    </div>
+  </footer>
+
 </div>
 
-<!-- ══ HERO ══ -->
-<section class="hero">
-  <div class="container">
-    <!-- Decorative background mark -->
-    <svg class="hero-bg-mark" viewBox="0 0 300 260" xmlns="http://www.w3.org/2000/svg">
-      <polygon points="110,130 140,113 170,130 170,164 140,181 110,164" fill="#007C7A" opacity="0.9"/>
-      <polygon points="140,96 170,79 200,96 200,130 170,147 140,130" fill="#007C7A" opacity="0.65"/>
-      <polygon points="80,156 110,139 140,156 140,190 110,207 80,190" fill="#007C7A" opacity="0.75"/>
-      <polygon points="68,122 98,105 128,122 128,156 98,173 68,156" fill="#0A6E6E" opacity="0.5"/>
-      <polygon points="170,168 200,151 230,168 230,202 200,219 170,202" fill="#007C7A" opacity="0.4"/>
-      <polygon points="210,92 240,75 270,92 270,126 240,143 210,126" fill="#C8963E" opacity="0.9"/>
-      <polygon points="222,104 240,94 258,104 258,118 240,128 222,118" fill="none" stroke="#D4864E" stroke-width="1.5" opacity="0.5"/>
-      <line x1="200" y1="126" x2="210" y2="118" stroke="#C8963E" stroke-width="1" stroke-dasharray="4 3" opacity="0.4"/>
-      <circle cx="278" cy="80" r="6" fill="#C8963E" opacity="0.6"/>
-      <circle cx="290" cy="68" r="4" fill="#C8963E" opacity="0.35"/>
-    </svg>
-    <div class="hero-content">
-      <div class="hero-tag fade-up">Circular Bioeconomy &middot; Alberta, Canada</div>
-      <h1 class="fade-up fade-up-d1">Turning agricultural co-products into <em>functional ingredients</em></h1>
-      <p class="hero-sub fade-up fade-up-d2">LEVURIX is developing a proprietary platform that grows purpose-fermented biomass on undervalued agricultural co-product streams — then extracts multiple high-purity functional ingredients from that biomass, creating new value at every stage.</p>
-      <div class="hero-pills fade-up fade-up-d3">
-        <span class="hero-pill">Clean Label</span>
-        <span class="hero-pill">Allergen-Free</span>
-        <span class="hero-pill">Non-GMO</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ CIRCULAR ECONOMY ══ -->
-<section id="circular" class="circular">
-  <div class="container">
-    <div class="section-tag">The Opportunity</div>
-    <h2 class="section-title">Two stages of value creation from one co-product stream</h2>
-    <p class="section-sub">Agricultural and food-processing industries generate vast quantities of co-product streams that are undervalued or underutilized. Our platform converts these into high-purity functional ingredients through a two-stage approach: purpose fermentation followed by gentle extraction. By processing locally sourced Prairies feedstocks, LEVURIX is building a resilient, value-added supply chain that turns industrial bypass into a strategic asset for the province's bio-economy.</p>
-    <div class="circular-visual">
-      <div class="circular-step">
-        <div class="circular-step-num">01</div>
-        <h3>Purpose fermentation</h3>
-        <p>Agricultural and food-processing co-product streams — currently undervalued — become substrates for growing purpose-fermented biomass. Low-value inputs are transformed into a controlled, consistent biomass rich in functional compounds.</p>
-      </div>
-      <div class="circular-step">
-        <div class="circular-step-num">02</div>
-        <h3>Gentle extraction</h3>
-        <p>Our proprietary platform recovers multiple functional ingredient streams from that biomass — clean-label, allergen-free ingredients for food, nutraceutical, and personal care supply chains. Value is created at both stages.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ TECHNOLOGY ══ -->
-<section id="technology">
-  <div class="container">
-    <div class="section-tag">Our Technology</div>
-    <h2 class="section-title">Better ingredients start with a better process</h2>
-    <p class="section-sub">The LEVURIX platform is designed to recover functional ingredients in their native state — delivering higher purity, preserved molecular structure, and clean-label compatibility from purpose-fermented biomass.</p>
-    <div class="tech-grid">
-      <div class="tech-card">
-        <h3>Clean label, no harsh solvents</h3>
-        <p>Ingredients are recovered without mechanical disruption, thermal degradation, or chemical solvents. The result is native-state compounds ready for food-grade formulations — allergen-free and non-GMO by design.</p>
-      </div>
-      <div class="tech-card">
-        <h3>Multiple ingredient streams</h3>
-        <p>A single process run is designed to yield multiple distinct functional ingredients — including protein, polysaccharides, specialty antioxidants, and gut health compounds — from one feedstock input.</p>
-      </div>
-      <div class="tech-card">
-        <h3>Preserved functionality</h3>
-        <p>By maintaining cell integrity during extraction, the platform preserves the native molecular structures that give ingredients their functional properties — gel strength, emulsification, foaming, and bioactivity.</p>
-      </div>
-      <div class="tech-card">
-        <h3>Improved platform economics</h3>
-        <p>Multi-stream recovery from a single batch amortizes processing cost across several revenue streams — improving unit economics relative to single-product extraction approaches.</p>
-      </div>
-    </div>
-    <div class="tech-ip">
-      <p><strong>Patent pending.</strong> The LEVURIX platform is protected by a patent application covering process methods, compositions, and system architecture.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ══ ROADMAP ══ -->
-<section id="roadmap" class="roadmap">
-  <div class="container">
-    <div class="section-tag">Development Roadmap</div>
-    <h2 class="section-title">From lab to commercial scale</h2>
-    <p class="section-sub">We follow a stage-gate approach — advancing only when the evidence supports it. Every stage has defined success criteria and a formal GO/NO-GO decision point, protecting against premature scale-up.</p>
-
-    <div class="roadmap-phases">
-      <div class="roadmap-phase">
-        <div class="roadmap-phase-label active">Current</div>
-        <h3>Concept</h3>
-        <p>Lab-scale validation of the core extraction process and target product functionality with a research partner.</p>
-      </div>
-      <div class="roadmap-phase">
-        <div class="roadmap-phase-label planned">Next</div>
-        <h3>Scale</h3>
-        <p>Pilot-scale production. First customer samples. Process optimization for commercial-grade output.</p>
-      </div>
-      <div class="roadmap-phase">
-        <div class="roadmap-phase-label planned">Target</div>
-        <h3>Commercialize</h3>
-        <p>Industrial-scale production in Alberta. Multi-stream commercialization. Export-ready functional ingredients for food and nutraceutical markets.</p>
-      </div>
-    </div>
-
-    <div class="roadmap-impact">
-      <div class="roadmap-impact-item">
-        <div class="roadmap-impact-num">15+</div>
-        <div class="roadmap-impact-label">Skilled Canadian jobs at full scale</div>
-      </div>
-      <div class="roadmap-impact-item">
-        <div class="roadmap-impact-num">AB</div>
-        <div class="roadmap-impact-label">Patent-protected IP retained in Canada</div>
-      </div>
-      <div class="roadmap-impact-item">
-        <div class="roadmap-impact-num">30+</div>
-        <div class="roadmap-impact-label">Total employment impact including indirect and supply chain</div>
-      </div>
-    </div>
-
-    <div class="roadmap-gate">
-      <p>Our development model is designed to create Canadian jobs, retain intellectual property in Alberta, and build a circular bioeconomy that converts fermentation and agricultural co-products into export-ready ingredients — contributing to the economic diversification of Western Canada's food and biomanufacturing sectors.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ══ MARKET ══ -->
-<section id="market">
-  <div class="container">
-    <div class="section-tag">Market Context</div>
-    <h2 class="section-title">Structural tailwinds across converging markets</h2>
-    <p class="section-sub">Clean-label demand, allergen-free formulation requirements, and circular economy mandates are creating sustained demand for novel functional ingredients from sustainable sources.</p>
-    <div class="market-grid">
-      <div class="market-stat">
-        <span class="market-stat-num">$4.3B</span>
-        <span class="market-stat-label">Global precision fermentation market (2025), projected to grow at 44% CAGR through 2034</span>
-      </div>
-      <div class="market-stat">
-        <span class="market-stat-num">$4.8B</span>
-        <span class="market-stat-label">Total investment in fermentation for alternative proteins through 2024</span>
-      </div>
-      <div class="market-stat">
-        <span class="market-stat-num">32%</span>
-        <span class="market-stat-label">Year-over-year growth in allergen-free food ingredient demand across North America</span>
-      </div>
-      <div class="market-stat">
-        <span class="market-stat-num">AB</span>
-        <span class="market-stat-label">Alberta's agricultural and food-processing ecosystem generates concentrated co-product streams suitable as fermentation substrates</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ PARTNER CTA ══ -->
-<section id="partners" class="partner-cta">
-  <div class="container">
-    <div class="partner-inner">
-      <div class="section-tag">Collaborate</div>
-      <h2 class="section-title">Seeking research and partners</h2>
-      <p>LEVURIX is actively seeking partners for research collaboration and development. We're looking for Alberta-based food manufacturers, agricultural processors, ingredient companies, and research institutions who share our interest in valorizing agricultural co-product streams through fermentation and functional ingredient production.</p>
-      <p>If your organization generates agricultural co-product streams, formulates with functional ingredients, or conducts food science research, there may be a strong fit.</p>
-      <a href="#contact" class="partner-btn">Start a conversation</a>
-    </div>
-  </div>
-</section>
-
-<!-- ══ TEAM ══ -->
-<section id="team" class="team">
-  <div class="container">
-    <div class="section-tag">Team</div>
-    <h2 class="section-title">About LEVURIX</h2>
-    <div class="team-text">
-      <p>LEVURIX was founded to create functional ingredients from purpose-fermented biomass — unlocking value from agricultural co-products that current methods leave behind.</p>
-      <p><strong>Founder &amp; CEO</strong> — An engineer-MBA with a passion for pharmaceutical and life sciences. Brings decades of experience in project execution, team leadership, and strategy. Founded LEVURIX to commercialize a proprietary multi-product platform developed through independent R&amp;D; leads all technical strategy and IP development.</p>
-      <p><strong>VP Business Development &amp; Operations</strong> — Broad experience in sales, customer service, administration, and contracts management.</p>
-      <p><strong>Advisors</strong> — An industrialist and entrepreneur with extensive multinational experience. LEVURIX is actively seeking advisors in metabolomics, bioprocessing, and protein science.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ══ CONTACT ══ -->
-<section id="contact" class="contact">
-  <div class="container">
-    <div class="section-tag">Connect</div>
-    <h2 class="section-title">Let's explore what's possible</h2>
-    <p class="section-sub">Whether you're a potential research collaborator, partner, service provider, ingredient buyer, or investor — we'd welcome the conversation.</p>
-    <div class="contact-grid">
-      <form class="contact-form" action="https://formspree.io/f/xlgojqkk" method="POST">
-        <input type="text" name="_gotcha" class="hp-field" tabindex="-1" autocomplete="off">
-        <input type="text" name="name" placeholder="Your name" required>
-        <input type="email" name="email" placeholder="Email address" required>
-        <select name="enquiry_type">
-          <option value="" disabled selected>Enquiry type</option>
-          <option value="research_collaboration">Research collaboration</option>
-          <option value="consortium_partner">Consortium partner</option>
-          <option value="service_provider">Service provider / Lab facility</option>
-          <option value="ingredient_buyer">Ingredient buyer</option>
-          <option value="investor">Investor</option>
-          <option value="other">Other</option>
-        </select>
-        <textarea name="message" placeholder="Tell us about your interest and how we might work together..." rows="5"></textarea>
-        <button type="submit">Send message</button>
-      </form>
-      <div class="contact-info">
-        <p>We're actively seeking partners for development and research collaboration. If you're an Alberta-based food manufacturer, agricultural processor, or ingredient company, we should talk.</p>
-        <div class="contact-info-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1116 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          <span>Calgary, Alberta, Canada</span>
-        </div>
-        <div class="contact-info-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
-          <span>Contact form preferred for initial enquiries</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ FOOTER ══ -->
-<footer>
-  <div class="container">
-    <div class="footer-inner">
-      <span class="footer-legal">&copy; 2026 Levurix BioRefinery Inc. &middot; Patent Pending</span>
-      <div class="footer-links">
-        <a href="#technology">Technology</a>
-        <a href="#roadmap">Roadmap</a>
-        <a href="#contact">Contact</a>
-      </div>
-    </div>
-  </div>
-</footer>
-
 <script>
-window.addEventListener('scroll', () => {
-  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 40);
-});
-function toggleMenu() {
-  document.getElementById('mobileMenu').classList.toggle('open');
-}
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    const target = document.querySelector(a.getAttribute('href'));
-    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-  });
-});
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) { entry.target.style.opacity = '1'; entry.target.style.transform = 'translateY(0)'; }
-  });
-}, { threshold: 0.1 });
-document.querySelectorAll('.tech-card, .circular-step, .market-stat, .roadmap-phase, .roadmap-impact-item').forEach(el => {
-  el.style.opacity = '0'; el.style.transform = 'translateY(16px)';
-  el.style.transition = 'opacity 0.5s ease, transform 0.5s ease'; observer.observe(el);
-});
+  (function () {
+    var btn = document.getElementById('copyBtn');
+    var email = document.getElementById('email');
+    if (!btn || !email) return;
+    btn.addEventListener('click', function () {
+      var done = function () {
+        btn.textContent = 'Copied';
+        setTimeout(function () { btn.textContent = 'Copy'; }, 1800);
+      };
+      var select = function () {
+        try {
+          var r = document.createRange();
+          r.selectNodeContents(email);
+          var s = window.getSelection();
+          s.removeAllRanges();
+          s.addRange(r);
+          btn.textContent = 'Selected';
+          setTimeout(function () { btn.textContent = 'Copy'; }, 1800);
+        } catch (e) { /* nothing further to offer */ }
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(email.textContent.trim()).then(done, select);
+      } else {
+        select();
+      }
+    });
+  })();
 </script>
-</body>
-</html>
+
+</body></html>
