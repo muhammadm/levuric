@@ -1,293 +1,426 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Levurix</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,600&display=swap">
+<meta name="description" content="Levurix develops and operates consumer nutrition brands in the allergen-free category — products formulated from the start without the major allergens.">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Levurix">
+<meta property="og:description" content="Food brands for households that have to read every label.">
+<meta property="og:url" content="https://levurix.com/">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://levurix.com/">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=Public+Sans:wght@400;500;600&display=swap">
+
 <style>
-  /* Layout: one column, divided by the rule weights of a nutrition panel — 6px, 3px, 1px. */
-  :root {
-    --paper: #F5F2EB;
-    --card: #FBF9F4;
-    --ink: #1C1917;
-    --muted: #635B50;
-    --rule: #CFC7B8;
-    --accent: #8A5A18;
-    --display: 'Archivo', 'Helvetica Neue', Helvetica, system-ui, sans-serif;
-    --body: 'Archivo', 'Helvetica Neue', Helvetica, system-ui, sans-serif;
-    --mark: 'Fraunces', Georgia, 'Times New Roman', serif;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --paper: #17150F;
-      --card: #1F1C15;
-      --ink: #F0EBE0;
-      --muted: #9C9284;
-      --rule: #35312A;
-      --accent: #D9A441;
-      color-scheme: dark;
-    }
-  }
-  :root[data-theme="dark"] {
-    --paper: #17150F;
-    --card: #1F1C15;
-    --ink: #F0EBE0;
-    --muted: #9C9284;
-    --rule: #35312A;
-    --accent: #D9A441;
+/* Layout: single editorial column, generous vertical rhythm, hairline rules instead of cards.
+   Palette and mark colours are taken from the logomark itself. */
+:root {
+  --bg:          #FBFCFB;
+  --surface:     #F2F6F5;
+  --fg:          #15201F;
+  --fg-muted:    #51605E;
+  --rule:        #DCE5E3;
+  --teal:        #007C7A;
+  --gold:        #C8963E;
+
+  --mark-teal:      #007C7A;
+  --mark-teal-deep: #0A6E6E;
+  --mark-gold:      #C8963E;
+
+  --display: "Newsreader", Georgia, "Times New Roman", serif;
+  --body:    "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+
+  --measure: 34rem;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:       #0D1413;
+    --surface:  #151F1E;
+    --fg:       #E9EEED;
+    --fg-muted: #9CACAA;
+    --rule:     #253331;
+    --teal:     #5FC4C1;
+    --gold:     #E0AF5C;
+
+    --mark-teal:      #5FC4C1;
+    --mark-teal-deep: #7AD4D1;
+    --mark-gold:      #E0AF5C;
     color-scheme: dark;
   }
+}
+:root[data-theme="dark"] {
+  --bg:       #0D1413;
+  --surface:  #151F1E;
+  --fg:       #E9EEED;
+  --fg-muted: #9CACAA;
+  --rule:     #253331;
+  --teal:     #5FC4C1;
+  --gold:     #E0AF5C;
 
-  body {
-    margin: 0;
-    background: var(--paper);
-    color: var(--ink);
-    font-family: var(--body);
-    font-size: 16px;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-  }
-  .shell {
-    max-width: 780px;
-    margin: 0 auto;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-block: 56px 72px;
-  }
-  @media (min-width: 640px) {
-    .shell { padding-left: 40px; padding-right: 40px; padding-block: 88px 96px; }
-  }
+  --mark-teal:      #5FC4C1;
+  --mark-teal-deep: #7AD4D1;
+  --mark-gold:      #E0AF5C;
+  color-scheme: dark;
+}
 
-  h1, h2, h3 { margin: 0; text-wrap: balance; }
-  p { margin: 0; }
-  a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
-  a:hover { text-decoration-thickness: 2px; }
-  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+*, *::before, *::after { box-sizing: border-box; }
 
-  /* Masthead */
-  .masthead { display: flex; align-items: center; gap: 13px; }
-  .monogram {
-    width: 44px; height: 44px; flex-shrink: 0;
-    background: var(--ink);
-    border-radius: 9px 9px 50% 50% / 9px 9px 16px 16px;
-    display: flex; align-items: center; justify-content: center;
-    padding-bottom: 3px; box-sizing: border-box;
-  }
-  .monogram span {
-    font-family: var(--mark); font-size: 24px; font-weight: 400;
-    color: var(--paper); line-height: 1;
-  }
-  .wordmark {
-    font-family: var(--mark); font-size: 31px; font-weight: 600;
-    letter-spacing: 0.01em; line-height: 1;
-  }
+html { -webkit-text-size-adjust: 100%; }
 
-  .eyebrow {
-    font-size: 11px; font-weight: 700; letter-spacing: 0.15em;
-    text-transform: uppercase; color: var(--muted);
-  }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--body);
+  font-size: 1rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
 
-  /* Panel rules */
-  .rule-heavy { height: 6px; background: var(--ink); border: 0; margin: 0; }
-  .rule-mid { height: 3px; background: var(--ink); border: 0; margin: 0; }
-  .rule-fine { height: 1px; background: var(--rule); border: 0; margin: 0; }
+.wrap {
+  max-width: 46rem;
+  margin-inline: auto;
+  padding-left:  max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+}
 
-  .stack { display: flex; flex-direction: column; }
-  .gap-s { gap: 10px; }
-  .gap-m { gap: 18px; }
-  .gap-l { gap: 30px; }
-  .block { padding-block: 34px; }
+/* ---------- masthead ---------- */
 
-  .thesis {
-    font-family: var(--display);
-    font-size: clamp(30px, 7.2vw, 52px);
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    line-height: 1.04;
-    max-width: 17em;
-  }
-  .lede { font-size: 18px; line-height: 1.58; max-width: 36em; color: var(--ink); }
-  .prose { font-size: 16px; line-height: 1.65; max-width: 36em; color: var(--muted); }
+.masthead {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding-block: 2.75rem 0;
+}
+.mark { width: 58px; height: auto; flex: none; display: block; }
+.mark .hex       { fill: var(--mark-teal); }
+.mark .hex-deep  { fill: var(--mark-teal-deep); }
+.mark .gold      { fill: var(--mark-gold); }
+.mark .gold-line { stroke: var(--mark-gold); }
+.mark .gold-ring { stroke: var(--mark-gold); }
 
-  /* Brand entry */
-  .brand {
-    background: var(--card);
-    border: 1px solid var(--rule);
-    padding: 26px 24px 24px;
-    display: flex; flex-direction: column; gap: 20px;
-  }
-  .brand-name {
-    font-family: var(--display); font-size: 27px; font-weight: 800;
-    letter-spacing: -0.022em; line-height: 1.05;
-  }
-  .brand-name em {
-    font-family: var(--mark); font-style: italic; font-weight: 600;
-    letter-spacing: 0; font-size: 25px;
-  }
-  .figures {
-    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
-    border-top: 1px solid var(--rule);
-  }
-  @media (min-width: 520px) { .figures { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-  .figure {
-    min-width: 0; padding: 13px 14px 13px 0;
-    border-bottom: 1px solid var(--rule);
-  }
-  .figure-value {
-    font-family: var(--display); font-size: 22px; font-weight: 700;
-    letter-spacing: -0.02em; line-height: 1.1;
-    font-variant-numeric: tabular-nums;
-  }
-  .figure-label {
-    font-size: 10px; font-weight: 700; letter-spacing: 0.13em;
-    text-transform: uppercase; color: var(--muted); margin-top: 4px;
-  }
+.wordmark {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 1.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin: 0;
+  line-height: 1;
+}
 
-  /* Practice entries, set like a declaration */
-  .entry { display: flex; flex-direction: column; gap: 6px; padding-block: 20px; border-top: 1px solid var(--rule); }
-  .entry:first-of-type { border-top: 0; padding-top: 4px; }
-  .entry-title { font-size: 16px; font-weight: 700; letter-spacing: -0.005em; }
-  .entry-body { font-size: 15px; line-height: 1.6; color: var(--muted); max-width: 40em; }
+/* ---------- type ---------- */
 
-  /* Contact */
-  .contact { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
-  .address {
-    font-family: var(--display); font-size: 19px; font-weight: 600;
-    letter-spacing: -0.01em; user-select: all;
-  }
-  .copy {
-    font-family: var(--body); font-size: 12px; font-weight: 700;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--paper); background: var(--ink);
-    border: 0; border-radius: 3px; padding: 9px 14px;
-    cursor: pointer; min-height: 44px;
-  }
-  .copy:hover { background: var(--accent); }
-  .colophon {
-    font-size: 12.5px; line-height: 1.6; color: var(--muted);
-    display: flex; flex-wrap: wrap; gap: 4px 10px;
-  }
-  .colophon span:not(:last-child)::after { content: ' ·'; color: var(--rule); }
+.lede {
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: clamp(1.75rem, 5.2vw, 2.75rem);
+  line-height: 1.22;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+  margin: 0;
+  max-width: 20ch;
+}
 
-  @media (prefers-reduced-motion: reduce) {
-    * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
-  }
+section { padding-block: 3rem; border-top: 1px solid var(--rule); }
+section:first-of-type { border-top: 0; padding-block: 3.25rem 3rem; }
+
+h2 {
+  font-family: var(--body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin: 0 0 1.1rem;
+}
+
+p { margin: 0 0 1.1rem; max-width: var(--measure); }
+p:last-child { margin-bottom: 0; }
+
+.muted { color: var(--fg-muted); }
+
+/* ---------- principles ---------- */
+
+.principles { display: grid; gap: 1.75rem; margin: 0; padding: 0; }
+.principle { min-width: 0; }
+.principle dt {
+  font-family: var(--display);
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+}
+.principle dd { margin: 0; color: var(--fg-muted); max-width: var(--measure); }
+
+/* ---------- contact ---------- */
+
+.contact-grid { display: grid; gap: 2.5rem; align-items: start; }
+@media (min-width: 46rem) {
+  .contact-grid { grid-template-columns: 1fr 1.25fr; gap: 3rem; }
+}
+
+.address { font-style: normal; color: var(--fg-muted); min-width: 0; }
+.address strong { color: var(--fg); font-weight: 500; display: block; margin-bottom: 0.35rem; }
+.address a { color: var(--teal); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+
+form { display: grid; gap: 1rem; min-width: 0; }
+
+.field { display: grid; gap: 0.35rem; min-width: 0; }
+
+label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  color: var(--fg-muted);
+}
+
+input[type="text"], input[type="email"], textarea {
+  font: inherit;
+  font-size: 0.95rem;
+  color: var(--fg);
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  padding: 0.6rem 0.7rem;
+  width: 100%;
+  min-width: 0;
+}
+textarea { resize: vertical; min-height: 7rem; line-height: 1.55; }
+
+input:focus-visible, textarea:focus-visible, button:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
+}
+
+button[type="submit"] {
+  font: inherit;
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+  color: var(--bg);
+  background: var(--teal);
+  border: 1px solid var(--teal);
+  border-radius: 3px;
+  padding: 0.62rem 1.4rem;
+  cursor: pointer;
+  justify-self: start;
+  transition: opacity 0.15s ease;
+}
+button[type="submit"]:hover { opacity: 0.88; }
+button[type="submit"][disabled] { opacity: 0.5; cursor: default; }
+
+/* honeypot — off-screen rather than display:none, which bots detect */
+.gotcha {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.status {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  padding: 0.7rem 0.85rem;
+  border-radius: 3px;
+  border: 1px solid var(--rule);
+  background: var(--surface);
+  max-width: var(--measure);
+}
+.status.ok  { border-color: var(--teal); }
+.status.err { border-color: var(--gold); }
+
+/* ---------- footer ---------- */
+
+footer {
+  border-top: 1px solid var(--rule);
+  padding-block: 2rem 3rem;
+  font-size: 0.85rem;
+  color: var(--fg-muted);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
 </style>
+</head>
 
-<div class="shell stack gap-l">
+<body>
+<div class="wrap">
 
-  <header class="stack gap-m">
-    <div class="masthead">
-      <div class="monogram" aria-hidden="true"><span>L</span></div>
-      <div class="wordmark">Levurix</div>
-    </div>
-    <h1 class="thesis">Food brands for households that have to read every label.</h1>
+  <header class="masthead">
+    <!-- viewBox tightened from "0 0 200 160": the artwork sat 13 units high in the original,
+         which read as misalignment beside the wordmark -->
+    <svg class="mark" viewBox="26 6 144 122" role="img" aria-label="Levurix">
+      <polygon class="hex"      points="56,60 72,50 88,60 88,80 72,90 56,80"       opacity="0.92"/>
+      <polygon class="hex"      points="72,36 88,26 104,36 104,56 88,66 72,56"     opacity="0.6"/>
+      <polygon class="hex"      points="40,72 56,62 72,72 72,92 56,102 40,92"      opacity="0.72"/>
+      <polygon class="hex-deep" points="32,48 48,38 64,48 64,68 48,78 32,68"       opacity="0.4"/>
+      <polygon class="hex"      points="88,92 104,82 120,92 120,112 104,122 88,112" opacity="0.32"/>
+      <polygon class="gold"     points="116,32 132,22 148,32 148,52 132,62 116,52" opacity="0.95"/>
+      <polygon class="gold-ring" points="124,39 132,34 140,39 140,47 132,52 124,47"
+               fill="none" stroke-width="0.8" opacity="0.35"/>
+      <line class="gold-line" x1="104" y1="52" x2="116" y2="44"
+            stroke-width="1" stroke-dasharray="3 2" opacity="0.35"/>
+      <circle class="gold" cx="154" cy="22" r="4"   opacity="0.4"/>
+      <circle class="gold" cx="162" cy="14" r="2.5" opacity="0.2"/>
+    </svg>
+    <p class="wordmark">Levurix</p>
   </header>
 
-  <hr class="rule-heavy">
-
-  <section class="block stack gap-s">
-    <div class="eyebrow">What we do</div>
-    <p class="lede">We develop and operate consumer nutrition brands in the allergen-free category — products formulated from the start without the major allergens, rather than adapted to avoid them.</p>
+  <section>
+    <h1 class="lede">Food brands for households that have to read every label.</h1>
   </section>
 
-  <hr class="rule-mid">
+  <section>
+    <h2>What we do</h2>
+    <p>We develop and operate consumer nutrition brands in the allergen-free category — products formulated from the start without the major allergens, rather than adapted to avoid them.</p>
+  </section>
 
-  <section class="block stack gap-m">
-    <div class="eyebrow">Brands</div>
-    <div class="brand">
-      <div class="stack gap-s">
-        <h2 class="brand-name"> <em>Complete Protein</em></h2>
-        <p class="prose">A complete protein shake built on a single protein source, with the fibre most of the category leaves out. Launching in the United States in 2027.</p>
+  <section>
+    <h2>Why we build here</h2>
+    <p>The nutrition aisle serves allergen-free households by substitution: take a mainstream product, remove what cannot be there, accept what is lost.</p>
+    <p>We start from the constraint and let the nutrition and the eating experience follow from it.</p>
+  </section>
+
+  <section>
+    <h2>How we work</h2>
+    <dl class="principles">
+      <div class="principle">
+        <dt>Ingredient-led formulation</dt>
+        <dd>We choose ingredients on measured performance rather than category convention, and we test what we claim.</dd>
       </div>
-      <div class="figures">
-        <div class="figure">
-          <div class="figure-value">28 g</div>
-          <div class="figure-label">Protein</div>
-        </div>
-        <div class="figure">
-          <div class="figure-value">10 g</div>
-          <div class="figure-label">Fibre</div>
-        </div>
-        <div class="figure">
-          <div class="figure-value">Six</div>
-          <div class="figure-label">Ingredients</div>
-        </div>
-        <div class="figure">
-          <div class="figure-value">Zero</div>
-          <div class="figure-label">Of the major allergens</div>
-        </div>
+      <div class="principle">
+        <dt>Allergen-free manufacturing</dt>
+        <dd>We will manufacture only in facilities that handle none of Canada&rsquo;s priority allergens.</dd>
       </div>
-      <div><a href="https://bushel.com"></a></div>
+      <div class="principle">
+        <dt>Short lists</dt>
+        <dd>If an ingredient does not do a specific job, it is not in the formula.</dd>
+      </div>
+    </dl>
+  </section>
+
+  <section>
+    <h2>Brands</h2>
+    <p>Our first brand is a complete protein shake, in development.</p>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <div class="contact-grid">
+
+      <address class="address">
+        <strong>Levurix Inc.</strong>
+        Calgary, Alberta<br>
+        Canada
+      </address>
+
+      <div>
+        <form id="contact-form" action="https://formspree.io/f/xlgojqkk" method="POST">
+          <input type="hidden" name="_subject" value="Enquiry from levurix.com">
+
+          <div class="gotcha" aria-hidden="true">
+            <label for="company-website">Leave this field empty</label>
+            <input type="text" id="company-website" name="_gotcha" tabindex="-1" autocomplete="off">
+          </div>
+
+          <div class="field">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" autocomplete="name" required>
+          </div>
+
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" autocomplete="email" required>
+          </div>
+
+          <div class="field">
+            <label for="organisation">Company <span class="muted">(optional)</span></label>
+            <input type="text" id="organisation" name="organisation" autocomplete="organization">
+          </div>
+
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required></textarea>
+          </div>
+
+          <button type="submit">Send</button>
+        </form>
+
+        <p class="status" id="form-status" role="status" aria-live="polite" hidden></p>
+      </div>
+
     </div>
   </section>
 
-  <hr class="rule-mid">
-
-  <section class="block stack gap-s">
-    <div class="eyebrow">Why we build here</div>
-    <p class="prose">The nutrition aisle serves allergen-free households by substitution rather than by design. Products built around what has been removed taste like compromise, and the people who need them most are the ones already reading every line of every panel. We formulate for the constraint first and let the nutrition and the eating experience follow from it.</p>
-  </section>
-
-  <hr class="rule-mid">
-
-  <section class="block stack gap-m">
-    <div class="eyebrow">How we work</div>
-    <div>
-      <div class="entry">
-        <div class="entry-title">Ingredient-led formulation</div>
-        <div class="entry-body">We select for amino acid completeness, fibre quality and sensory performance, and we print the ingredient count on the front of the pack.</div>
-      </div>
-      <div class="entry">
-        <div class="entry-title">Dedicated allergen-free manufacturing</div>
-        <div class="entry-body">We manufacture only in facilities that handle none of the fourteen major allergens.</div>
-      </div>
-      <div class="entry">
-        <div class="entry-title">Short lists</div>
-        <div class="entry-body">If an ingredient does not do a specific job, it is not in the formula.</div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="rule-heavy">
-
-  <footer class="block stack gap-m" style="padding-bottom: 0">
-    <hr class="rule-fine">
-    <div class="colophon">
-      <span>Levurix</span>
-      <span>Calgary, Alberta, Canada</span>
-      <span>Incorporated 2026</span>
-      <span>&copy; 2026</span>
-    </div>
+  <footer>
+    <span>Levurix Inc.</span>
+    <span>Calgary, Alberta, Canada</span>
+    <span>Incorporated 2026</span>
+    <span>&copy; 2026</span>
   </footer>
 
 </div>
 
 <script>
-  (function () {
-    var btn = document.getElementById('copyBtn');
-    var email = document.getElementById('email');
-    if (!btn || !email) return;
-    btn.addEventListener('click', function () {
-      var done = function () {
-        btn.textContent = 'Copied';
-        setTimeout(function () { btn.textContent = 'Copy'; }, 1800);
-      };
-      var select = function () {
-        try {
-          var r = document.createRange();
-          r.selectNodeContents(email);
-          var s = window.getSelection();
-          s.removeAllRanges();
-          s.addRange(r);
-          btn.textContent = 'Selected';
-          setTimeout(function () { btn.textContent = 'Copy'; }, 1800);
-        } catch (e) { /* nothing further to offer */ }
-      };
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(email.textContent.trim()).then(done, select);
-      } else {
-        select();
+/* Progressive enhancement. Without JS the form posts normally to Formspree and the
+   visitor lands on their confirmation page. With JS it posts in the background and
+   the visitor stays here. No third-party script for a single form. */
+(function () {
+  var form   = document.getElementById('contact-form');
+  var status = document.getElementById('form-status');
+  if (!form || !status || !window.fetch) return;
+
+  function show(cls, text) {
+    status.className = 'status ' + cls;
+    status.textContent = text;
+    status.hidden = false;
+  }
+
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    var button = form.querySelector('button[type="submit"]');
+    button.disabled = true;
+    show('', 'Sending…');
+
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(function (response) {
+      if (response.ok) {
+        form.hidden = true;
+        show('ok', 'Thanks — your message is with us. We read and reply to everything.');
+        return;
       }
+      return response.json().catch(function () { return {}; }).then(function (data) {
+        var detail = data && data.errors
+          ? data.errors.map(function (e) { return e.message; }).join('. ')
+          : 'Something went wrong at our end.';
+        show('err', detail + ' Please try again in a moment.');
+        button.disabled = false;
+      });
+    }).catch(function () {
+      show('err', 'Could not reach the server. Please check your connection and try again.');
+      button.disabled = false;
     });
-  })();
+  });
+})();
 </script>
 
-</body></html>
+</body>
+</html>
