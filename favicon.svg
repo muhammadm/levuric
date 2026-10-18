@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="7.25 9.5 21.5 21.5">
+  <!-- LEVURIX favicon. viewBox tightened from "0 0 32 32": the artwork was offset 2 units
+       right and 4.25 down from centre, and filled only half the box, so at 16px it rendered
+       small and visibly low. Cropping to the artwork centres it and nearly doubles its size. -->
+  <polygon points="10,16 14,13 18,16 18,20 14,23 10,20" fill="#007C7A" opacity="0.9"/>
+  <polygon points="18,16 22,13 26,16 26,20 22,23 18,20" fill="#007C7A" opacity="0.75"/>
+  <polygon points="14,22 18,19 22,22 22,26 18,29 14,26" fill="#0A6E6E" opacity="0.45"/>
+  <circle cx="18" cy="18" r="2.5" fill="#C8963E" opacity="0.95"/>
+  <circle cx="18" cy="13" r="1.5" fill="#C8963E" opacity="0.45"/>
+</svg>
