@@ -19,6 +19,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=Public+Sans:wght@400;500;600&display=swap">
 
+<script src="https://www.google.com/recaptcha/api.js?render=6LdlwfUtAAAAACC38d9NjDjd67zb4lK9kDH7rwei" async defer></script>
+
 <style>
 /* Layout: single editorial column, generous vertical rhythm, hairline rules instead of cards.
    Palette and mark colours are taken from the logomark itself. */
@@ -240,6 +242,18 @@ button[type="submit"][disabled] { opacity: 0.5; cursor: default; }
 .status.ok  { border-color: var(--teal); }
 .status.err { border-color: var(--gold); }
 
+/* reCAPTCHA v3 badge is hidden, so Google's terms require the disclosure below the form */
+.grecaptcha-badge { visibility: hidden; }
+
+.legal {
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: var(--fg-muted);
+  margin: 0.9rem 0 0;
+  max-width: var(--measure);
+}
+.legal a { color: var(--fg-muted); text-underline-offset: 2px; }
+
 /* ---------- footer ---------- */
 
 footer {
@@ -362,6 +376,10 @@ footer {
         </form>
 
         <p class="status" id="form-status" role="status" aria-live="polite" hidden></p>
+
+        <p class="legal">This site is protected by reCAPTCHA. Google&rsquo;s
+          <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy&nbsp;Policy</a> and
+          <a href="https://policies.google.com/terms" target="_blank" rel="noopener">Terms&nbsp;of&nbsp;Service</a> apply.</p>
       </div>
 
     </div>
@@ -377,10 +395,12 @@ footer {
 </div>
 
 <script>
-/* Progressive enhancement. Without JS the form posts normally to Formspree and the
-   visitor lands on their confirmation page. With JS it posts in the background and
-   the visitor stays here. No third-party script for a single form. */
+/* Posts in the background so the visitor stays on the page, with a reCAPTCHA v3 token
+   attached. The form keeps its action and method, so if this script never runs the
+   browser still posts to Formspree — though with reCAPTCHA enabled on the form that
+   submission is rejected, because v3 cannot produce a token without JavaScript. */
 (function () {
+  var SITE_KEY = '6LdlwfUtAAAAACC38d9NjDjd67zb4lK9kDH7rwei';
   var form   = document.getElementById('contact-form');
   var status = document.getElementById('form-status');
   if (!form || !status || !window.fetch) return;
@@ -391,32 +411,50 @@ footer {
     status.hidden = false;
   }
 
+  function post(token) {
+    var data = new FormData(form);
+    // Formspree requires this exact field name; renaming it fails verification.
+    data.append('g-recaptcha-response', token);
+    return fetch(form.action, {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    });
+  }
+
   form.addEventListener('submit', function (event) {
     event.preventDefault();
     var button = form.querySelector('button[type="submit"]');
     button.disabled = true;
     show('', 'Sending…');
 
-    fetch(form.action, {
-      method: 'POST',
-      body: new FormData(form),
-      headers: { 'Accept': 'application/json' }
-    }).then(function (response) {
-      if (response.ok) {
-        form.hidden = true;
-        show('ok', 'Thanks — your message is with us. We read and reply to everything.');
-        return;
-      }
-      return response.json().catch(function () { return {}; }).then(function (data) {
-        var detail = data && data.errors
-          ? data.errors.map(function (e) { return e.message; }).join('. ')
-          : 'Something went wrong at our end.';
-        show('err', detail + ' Please try again in a moment.');
+    if (!window.grecaptcha || !window.grecaptcha.ready) {
+      show('err', 'Could not load spam protection. If you use an ad blocker, allow this page and try again.');
+      button.disabled = false;
+      return;
+    }
+
+    // A v3 token expires after about two minutes, so it is requested here at submit
+    // time rather than on page load — otherwise a visitor who spends a while writing
+    // would submit a token that has already gone stale.
+    grecaptcha.ready(function () {
+      grecaptcha.execute(SITE_KEY, { action: 'submit' }).then(post).then(function (response) {
+        if (response.ok) {
+          form.hidden = true;
+          show('ok', 'Thanks — your message is with us. We read and reply to everything.');
+          return;
+        }
+        return response.json().catch(function () { return {}; }).then(function (data) {
+          var detail = data && data.errors
+            ? data.errors.map(function (e) { return e.message; }).join('. ')
+            : 'Something went wrong at our end.';
+          show('err', detail + ' Please try again in a moment.');
+          button.disabled = false;
+        });
+      }).catch(function () {
+        show('err', 'Could not reach the server. Please check your connection and try again.');
         button.disabled = false;
       });
-    }).catch(function () {
-      show('err', 'Could not reach the server. Please check your connection and try again.');
-      button.disabled = false;
     });
   });
 })();
