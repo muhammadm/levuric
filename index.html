@@ -62,12 +62,19 @@
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg:       #0D1413;
-    --surface:  #151F1E;
-    --fg:       #E9EEED;
-    --fg-muted: #9CACAA;
-    --rule:     #253331;
-    --teal:     #5FC4C1;
+    /* Dark mode takes the middle section to a deep shade of the BAND'S own hue rather
+       than to a neutral near-black. At #0D1413 the page read as three stacked blocks —
+       teal, black, teal — with the band edges as hard seams. #072523 keeps the middle
+       clearly a deeper plane (3.21:1 against the band, so the colour break still
+       announces itself) while putting it in the same family as the bands. --teal is
+       lightened to #6FCFCC because #5FC4C1 loses its separation once the ground is teal
+       rather than black. Measured on this ground: body 13.8:1, muted 7.5:1, label 8.8:1. */
+    --bg:       #072523;
+    --surface:  #0D3331;
+    --fg:       #E6EFEE;
+    --fg-muted: #9DB5B3;
+    --rule:     #17403E;
+    --teal:     #6FCFCC;
     --gold:     #E0AF5C;
 
     --mark-teal:      #5FC4C1;
@@ -77,12 +84,14 @@
   }
 }
 :root[data-theme="dark"] {
-  --bg:       #0D1413;
-  --surface:  #151F1E;
-  --fg:       #E9EEED;
-  --fg-muted: #9CACAA;
-  --rule:     #253331;
-  --teal:     #5FC4C1;
+  /* Mirror of the prefers-color-scheme block above — same values, for an explicit
+     data-theme="dark". Any change to one must be made to the other. */
+  --bg:       #072523;
+  --surface:  #0D3331;
+  --fg:       #E6EFEE;
+  --fg-muted: #9DB5B3;
+  --rule:     #17403E;
+  --teal:     #6FCFCC;
   --gold:     #E0AF5C;
 
   --mark-teal:      #5FC4C1;
