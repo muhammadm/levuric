@@ -41,9 +41,17 @@
      redefined for dark mode: white type sits on this ground, and --teal lightens to
      #5FC4C1 in dark, which would drop the contrast below legible. The band holds the
      same dark teal in both themes and the gold is lightened so it separates from it. */
-  --band-bg:   #007C7A;
-  --band-fg:   #FBFCFB;
-  --band-gold: #EAC585;
+  --band-bg:    #007C7A;
+  --band-fg:    #FBFCFB;
+  --band-gold:  #EAC585;
+  --band-line:  rgba(255,255,255,0.24);   /* borders only, never text */
+  /* Opaque, and DARKER than the band rather than lighter. As rgba(255,255,255,0.10) it
+     composited to #1A8987, where white input text measures 4.11:1 — under the 4.5 floor,
+     in the one place on the page people actually type. Lightening a field that carries
+     white text can only lower contrast; recessing it raises it. At #006A68 white text
+     measures 6.26:1, and being opaque it also stops the hexagon field showing through
+     the typing surface. */
+  --band-field: #006A68;
 
   --display: "Newsreader", Georgia, "Times New Roman", serif;
   --body:    "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
@@ -107,12 +115,40 @@ body {
 /* ---------- top band ---------- */
 
 .topband {
+  position: relative;
+  overflow: hidden;
   background: var(--band-bg);
   color: var(--band-fg);
   /* The band runs under the status bar on a notched phone while its content clears it. */
   padding-top: env(safe-area-inset-top, 0px);
   padding-bottom: 3.25rem;
 }
+.topband > .wrap { position: relative; z-index: 1; }
+
+/* Full-bleed background, not a corner motif. It covers the whole band edge to edge and
+   the content sits on top of it (.wrap carries z-index 1). The earlier version was a
+   part-width box with "slice", so the crop window moved with the viewport and the
+   artwork lost its left side at some widths. Covering the band removes that variable:
+   there is no box smaller than the band for the artwork to be cut against. */
+.hexfield,
+.botfield {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  fill: var(--band-fg);
+  pointer-events: none;
+}
+/* Monochrome. Every shape is the same white and differs only in opacity. Dropping the
+   gold is also what makes a full background possible at all: white at these alphas is
+   safe behind type, the gold never was — white over the composited gold measures about
+   1.6:1, so it could only ever live in a corner clear of the text. The gold still
+   appears in the masthead lockup, where it is the point of the mark. */
+.hexfield .g,
+.botfield .g  { fill: var(--band-fg); }
+.hexfield .gs,
+.botfield .gs { fill: none; stroke: var(--band-fg); }
+
 .topband .lede { color: var(--band-fg); }
 .hero { padding-block: 2.6rem 0; border-top: 0; }
 
@@ -123,6 +159,70 @@ body {
 .topband .mark .gold      { fill: var(--band-gold); }
 .topband .mark .gold-line,
 .topband .mark .gold-ring { stroke: var(--band-gold); }
+
+/* ---------- contact band ---------- */
+
+.botband {
+  position: relative;
+  overflow: hidden;
+  background: var(--band-bg);
+  color: var(--band-fg);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+.botband > .wrap { position: relative; z-index: 1; }
+.botband #contact { border-top: 0; }
+
+/* Same artwork as the top band, anchored to the opposite corner so the page is
+   bookended rather than repeated. Bottom-LEFT matters: on the right the gold hexagon
+   lands behind the email and company fields, which is where people are trying to type. */
+/* Same treatment as the top band: a full-bleed background behind the form rather than a
+   mark in the corner. Mirrored horizontally so the two bands bookend the page instead of
+   repeating — the artwork is anchored from the left here and from the right above. */
+/* .botfield shares every property with .hexfield above. */
+
+/* Every piece of text on this band is FULL white. White at 90% alpha over #007C7A
+   measures 4.41:1, under the 4.5 threshold — and unlike the headline above, this band
+   carries 0.78rem labels and legal text. So hierarchy here comes from size and weight,
+   never from opacity. */
+.botband h2,
+.botband .address,
+.botband .address strong,
+.botband label,
+.botband .muted,
+.botband .legal,
+.botband .legal a,
+.botband footer { color: var(--band-fg); }
+
+.botband .muted { font-weight: 400; }
+
+.botband input[type="text"],
+.botband input[type="email"],
+.botband textarea {
+  background: var(--band-field);
+  border-color: var(--band-line);
+  color: var(--band-fg);
+}
+.botband input:focus-visible,
+.botband textarea:focus-visible,
+.botband button:focus-visible { outline-color: var(--band-fg); }
+
+.botband button[type="submit"] {
+  background: var(--band-fg);
+  border-color: var(--band-fg);
+  color: var(--band-bg);
+}
+
+.botband .status     { background: var(--band-field); border-color: var(--band-line); color: var(--band-fg); }
+.botband .status.ok  { border-color: var(--band-fg); }
+.botband .status.err { border-color: var(--band-gold); }
+.botband footer      { border-top-color: var(--band-line); }
+
+@media (max-width: 40rem) {
+}
+
+/* No breakpoint for the background any more. Every rule that used to live here existed
+   to keep the gold hexagon clear of type at narrow widths; with the graphic monochrome
+   there is nothing it has to dodge, so it simply covers the band at every size. */
 
 /* ---------- masthead ---------- */
 
@@ -319,6 +419,24 @@ footer {
 <body>
 
 <div class="topband">
+
+  <!-- The band background is the SAME artwork as the masthead logo, scaled up and cropped
+       by the band edge - not a pattern built from it. Nothing is invented, so nothing can
+       drift off-brand, and the whole thing is well under a kilobyte. -->
+  <svg class="hexfield" viewBox="34 10 128 108" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+    <polygon points="56,60 72,50 88,60 88,80 72,90 56,80"       opacity="0.115"/>
+    <polygon points="72,36 88,26 104,36 104,56 88,66 72,56"      opacity="0.075"/>
+    <polygon points="40,72 56,62 72,72 72,92 56,102 40,92"       opacity="0.090"/>
+    <polygon points="32,48 48,38 64,48 64,68 48,78 32,68"        opacity="0.050"/>
+    <polygon points="88,92 104,82 120,92 120,112 104,122 88,112" opacity="0.040"/>
+    <!-- The extracted hexagon is the idea of the mark, so it carries the highest alpha of
+         the set - a step above the lead teal - rather than a colour of its own. -->
+    <polygon class="g" points="116,32 132,22 148,32 148,52 132,62 116,52" opacity="0.14"/>
+    <line class="gs" x1="104" y1="52" x2="116" y2="44" stroke-width="1" stroke-dasharray="3 2" opacity="0.10"/>
+    <circle class="g" cx="154" cy="22" r="4"   opacity="0.10"/>
+    <circle class="g" cx="162" cy="14" r="2.5" opacity="0.06"/>
+  </svg>
+
 <div class="wrap">
 
   <header class="masthead">
@@ -381,8 +499,30 @@ footer {
 
   <section>
     <h2>Brands</h2>
-    <p>Our first brand is a complete protein, in development.</p>
+    <p>Our first brand is in development.</p>
   </section>
+
+</div>
+
+<div class="botband">
+
+  <!-- Same artwork, anchored from the left so the two bands bookend the page rather than
+       repeat. The two dispersal dots are deliberately absent here: they sit at the very
+       top of the viewBox and are the first thing this crop clips, and a half-cut circle
+       reads as a bug rather than a detail. -->
+  <svg class="botfield" viewBox="34 10 128 108" preserveAspectRatio="xMinYMid slice" aria-hidden="true" focusable="false">
+    <polygon points="56,60 72,50 88,60 88,80 72,90 56,80"       opacity="0.115"/>
+    <polygon points="72,36 88,26 104,36 104,56 88,66 72,56"      opacity="0.075"/>
+    <polygon points="40,72 56,62 72,72 72,92 56,102 40,92"       opacity="0.090"/>
+    <polygon points="32,48 48,38 64,48 64,68 48,78 32,68"        opacity="0.050"/>
+    <polygon points="88,92 104,82 120,92 120,112 104,122 88,112" opacity="0.040"/>
+    <!-- The extracted hexagon is the idea of the mark, so it carries the highest alpha of
+         the set - a step above the lead teal - rather than a colour of its own. -->
+    <polygon class="g" points="116,32 132,22 148,32 148,52 132,62 116,52" opacity="0.14"/>
+    <line class="gs" x1="104" y1="52" x2="116" y2="44" stroke-width="1" stroke-dasharray="3 2" opacity="0.10"/>
+  </svg>
+
+<div class="wrap">
 
   <section id="contact">
     <h2>Contact</h2>
@@ -409,7 +549,7 @@ footer {
           </div>
 
           <div class="field">
-            <label for="email">Email</label>
+            <label for="email">Email <span class="muted">(company)</span></label>
             <input type="email" id="email" name="email" autocomplete="email" required>
           </div>
 
@@ -444,6 +584,7 @@ footer {
   </footer>
 
 </div>
+</div>
 
 <script>
 /* Posts in the background so the visitor stays on the page, with a reCAPTCHA v3 token
@@ -462,6 +603,51 @@ footer {
     status.hidden = false;
   }
 
+  /* Consumer and disposable mail domains are turned away at the form. This is a front
+     door, not enforcement: it is client-side, so anyone determined can post straight to
+     the endpoint. It stops the honest "I typed my personal address" case, which is what
+     it is for. Matching is on the exact domain or a subdomain of it, so acme.com is not
+     caught by me.com and webmail.com is not caught by mail.com. */
+  var FREE_MAIL = [
+    'gmail.com','googlemail.com','yahoo.com','ymail.com','rocketmail.com',
+    'hotmail.com','outlook.com','live.com','msn.com','aol.com','aim.com',
+    'icloud.com','me.com','mac.com',
+    'proton.me','protonmail.com','pm.me','tutanota.com','tuta.com','hushmail.com',
+    'gmx.com','gmx.net','mail.com','email.com','inbox.com','zoho.com','fastmail.com',
+    'yandex.com','yandex.ru','mail.ru','rambler.ru',
+    'qq.com','163.com','126.com','sina.com','sohu.com','foxmail.com','yeah.net','aliyun.com',
+    'naver.com','hanmail.net','daum.net','rediffmail.com',
+    'web.de','t-online.de','freenet.de','libero.it','virgilio.it','alice.it',
+    'free.fr','laposte.net','sfr.fr','wanadoo.fr',
+    'seznam.cz','wp.pl','o2.pl','onet.pl','interia.pl','abv.bg',
+    'shaw.ca','telus.net','sympatico.ca','rogers.com','bell.net','videotron.ca',
+    'comcast.net','verizon.net','att.net','sbcglobal.net','bellsouth.net','cox.net',
+    'charter.net','earthlink.net','juno.com','optonline.net',
+    'btinternet.com','sky.com','talktalk.net','virginmedia.com','ntlworld.com',
+    'bigpond.com','optusnet.com.au','xtra.co.nz',
+    'mailinator.com','guerrillamail.com','sharklasers.com','10minutemail.com',
+    'yopmail.com','tempmail.com','temp-mail.org','trashmail.com','maildrop.cc',
+    'getnada.com','dispostable.com','fakeinbox.com','throwawaymail.com','moakt.com',
+    'emailondeck.com','mintemail.com','spamgourmet.com','tempr.email'
+  ];
+  /* Consumer brands that run a domain per country - yahoo.co.uk, hotmail.fr, live.ca,
+     gmx.at. Listing every TLD is hopeless, so these match on the leading label. */
+  var FREE_PREFIX = ['yahoo.', 'hotmail.', 'outlook.', 'live.', 'gmx.'];
+
+  function isFreeMail(value) {
+    var at = String(value || '').lastIndexOf('@');
+    if (at < 0) return false;
+    var d = value.slice(at + 1).trim().toLowerCase().replace(/\.$/, '');
+    if (!d) return false;
+    for (var i = 0; i < FREE_MAIL.length; i++) {
+      if (d === FREE_MAIL[i] || d.slice(-(FREE_MAIL[i].length + 1)) === '.' + FREE_MAIL[i]) return true;
+    }
+    for (var j = 0; j < FREE_PREFIX.length; j++) {
+      if (d.indexOf(FREE_PREFIX[j]) === 0) return true;
+    }
+    return false;
+  }
+
   function post(token) {
     var data = new FormData(form);
     // Formspree requires this exact field name; renaming it fails verification.
@@ -476,6 +662,16 @@ footer {
   form.addEventListener('submit', function (event) {
     event.preventDefault();
     var button = form.querySelector('button[type="submit"]');
+
+    // Checked before the token is requested, so a rejected address costs no reCAPTCHA call.
+    var email = form.querySelector('#email');
+    if (email && isFreeMail(email.value)) {
+      show('err', 'Please use your company email address — we do not accept Gmail, Outlook, Yahoo or other personal mail accounts.');
+      email.focus();
+      email.select();
+      return;
+    }
+
     button.disabled = true;
     show('', 'Sending…');
 
