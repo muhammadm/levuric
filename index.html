@@ -37,6 +37,14 @@
   --mark-teal-deep: #0A6E6E;
   --mark-gold:      #C8963E;
 
+  /* The top band is the page's one colour break. Its three tokens are deliberately NOT
+     redefined for dark mode: white type sits on this ground, and --teal lightens to
+     #5FC4C1 in dark, which would drop the contrast below legible. The band holds the
+     same dark teal in both themes and the gold is lightened so it separates from it. */
+  --band-bg:   #007C7A;
+  --band-fg:   #FBFCFB;
+  --band-gold: #EAC585;
+
   --display: "Newsreader", Georgia, "Times New Roman", serif;
   --body:    "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
 
@@ -95,6 +103,26 @@ body {
   padding-left:  max(20px, env(safe-area-inset-left, 0px));
   padding-right: max(20px, env(safe-area-inset-right, 0px));
 }
+
+/* ---------- top band ---------- */
+
+.topband {
+  background: var(--band-bg);
+  color: var(--band-fg);
+  /* The band runs under the status bar on a notched phone while its content clears it. */
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: 3.25rem;
+}
+.topband .lede { color: var(--band-fg); }
+.hero { padding-block: 2.6rem 0; border-top: 0; }
+
+/* The mark inverts on the band. Teal-on-teal would disappear, and the gold hexagon is
+   the one element that should still read as separate — it is the point of the mark. */
+.topband .mark .hex,
+.topband .mark .hex-deep  { fill: var(--band-fg); }
+.topband .mark .gold      { fill: var(--band-gold); }
+.topband .mark .gold-line,
+.topband .mark .gold-ring { stroke: var(--band-gold); }
 
 /* ---------- masthead ---------- */
 
@@ -289,6 +317,8 @@ footer {
 </head>
 
 <body>
+
+<div class="topband">
 <div class="wrap">
 
   <header class="masthead">
@@ -311,9 +341,14 @@ footer {
     <p class="wordmark">Levurix</p>
   </header>
 
-  <section>
+  <section class="hero">
     <h1 class="lede">Food brands for households that have to read every label.</h1>
   </section>
+
+</div>
+</div>
+
+<div class="wrap">
 
   <section>
     <h2>What we do</h2>
